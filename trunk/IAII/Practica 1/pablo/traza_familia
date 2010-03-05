@@ -1,0 +1,271 @@
+TRUE
+CLIPS> 
+(clear)
+CLIPS> (deffacts initial-fact
+	;;Matrimonios
+	(esposos Sofia Juan)
+	(esposos Calixta Mateo)
+	(esposos Clara Joao)
+	(esposos Julia Mario)	
+	;;Paternidad
+	(padre Juan Carlos)
+	(madre Sofia Carlos)
+	(padre Juan Mateo)
+	(madre Sofia Mateo)
+	(padre Juan Clara)
+	(madre Sofia Clara)
+	(padre Mateo Amancio)
+	(madre Calixta Amancio)
+	(padre Mateo Amanda)
+	(madre Sofia Amanda)
+	(padre Joao Pepito)
+	(madre Clara Pepito)
+	(padre Joao Julia)
+	(madre Clara Julia)
+	(padre Mario Julieta)
+	(madre Julia Julieta)
+	(padre Mario Juanete)
+	(madre Julia Juanete)
+	;;Hermandad
+	(hermanode Carlos Mateo Clara)
+	(hermanode Mateo Clara Carlos)
+	(hermanode Clara Carlos Mateo)
+	(hermanode Amancio Amanda)
+	(hermanode Amanda Amancio)
+	(hermanode Pepito Julia)
+	(hermanode Julia Pepito)
+	(hermanode Julieta Juanete)
+	(hermanode Juanete Julieta)
+	;;Sexo
+	(mujer Sofia)
+	(mujer Calixta)
+	(mujer Clara)
+	(mujer Amanda)
+	(mujer Julia)
+	(mujer Julieta)
+	(hombre Juan)
+	(hombre Carlos)
+	(hombre Mateo)
+	(hombre Joao)
+	(hombre Amancio)
+	(hombre Pepito)
+	(hombre Mario)
+	(hombre Juanete))
+CLIPS> (reset)
+CLIPS> 
+
+;;Reglas establecidas
+
+(defrule reglaTios
+	(or 
+	  (and (or (hermanode $? ?x $? ?p $?) (hermanode $? ?p $? ?x $?))
+	       (or (padre ?p ?s) (madre ?p ?s))
+	  )
+	  (and (or (esposos ?x ?y) (esposos ?y ?x))
+	       (or (hermanode $? ?y $? ?p $?) (hermanode $? ?p $? ?y $?))
+	       (or (padre ?p ?s) (madre ?p ?s))
+	  )	  	
+	)
+	(hombre ?x)
+	=>
+	(assert (tio ?x ?s)))
+CLIPS> 
+(defrule reglaTias
+	(or 
+	  (and (or (hermanode $? ?x $? ?p $?) (hermanode $? ?p $? ?x $?))
+	       (or (padre ?p ?s) (madre ?p ?s))
+	  )
+	  (and (or (esposos ?x ?y) (esposos ?y ?x))
+	       (or (hermanode $? ?y $? ?p $?) (hermanode $? ?p $? ?y $?))
+	       (or (padre ?p ?s) (madre ?p ?s))
+	  )	  	
+	)
+	(mujer ?x)
+	=>
+	(assert (tia ?x ?s)))
+CLIPS> 
+(defrule reglaSobrinos
+	(or (tio ?t ?s) (tia ?t ?s))
+	(hombre ?s)
+	=>
+	(assert (sobrino ?s ?t)))
+CLIPS> 	
+(defrule reglaSobrinas
+	(or (tio ?t ?s) (tia ?t ?s))
+	(mujer ?s)
+	=>
+	(assert (sobrina ?s ?t)))
+CLIPS> 
+(defrule reglaPrimos
+	(or (tio ?t ?s) (tia ?t ?s))
+	(or (padre ?t ?x) (madre ?t ?x))
+	(hombre ?x)
+	=>
+	(assert (primo ?x ?p)))
+
+[PRCCODE3] Undefined variable p referenced in RHS of defrule.
+
+ERROR:
+(defrule MAIN::reglaPrimos
+   (or  (tio ?t ?s)
+        (tia ?t ?s))
+   (or  (padre ?t ?x)
+        (madre ?t ?x))
+   (hombre ?x)
+   =>
+   (assert (primo ?x ?p)))
+CLIPS> 
+(defrule reglaPrimas
+	(or (tio ?t ?s) (tia ?t ?s))
+	(or (padre ?t ?x) (madre ?t ?x))
+	(mujer ?x)
+	=>
+	(assert (prima ?x ?p)))
+
+[PRCCODE3] Undefined variable p referenced in RHS of defrule.
+
+ERROR:
+(defrule MAIN::reglaPrimas
+   (or  (tio ?t ?s)
+        (tia ?t ?s))
+   (or  (padre ?t ?x)
+        (madre ?t ?x))
+   (mujer ?x)
+   =>
+   (assert (prima ?x ?p)))
+CLIPS> 
+(defrule reglaAbuelos
+	(esposos ?x ?y)
+	(padre ?y ?h)
+	(madre ?x ?h)
+	(or (padre ?h ?n) (madre ?h ?n))
+	=>
+	(assert (abuela ?x ?n))
+	(assert (abuelo ?y ?n)))
+CLIPS> 
+(defrule reglaNietos
+	(or (abuelo ?a ?n) (abuela ?a ?n))
+	(hombre ?n)
+	=>
+	(assert (nieto ?n ?a)))
+CLIPS> 
+(defrule reglaNietas
+	(or (abuelo ?a ?n) (abuela ?a ?n))
+	(mujer ?n)
+	=>
+	(assert (nieta ?n ?a)))
+CLIPS> 
+(defrule reglaBisabuelo
+	(esposos ?x ?y)
+	(abuela ?x ?n)
+	(abuelo ?y ?n)
+	(or (padre ?n ?bn) (madre ?n ?bn))
+	=>
+	(assert (bisabuela ?x ?bn))
+	(assert (bisabuelo ?y ?bn)))
+CLIPS> 
+(run)
+CLIPS> (facts)
+f-0     (esposos Sofia Juan)
+f-1     (esposos Calixta Mateo)
+f-2     (esposos Clara Joao)
+f-3     (esposos Julia Mario)
+f-4     (padre Juan Carlos)
+f-5     (madre Sofia Carlos)
+f-6     (padre Juan Mateo)
+f-7     (madre Sofia Mateo)
+f-8     (padre Juan Clara)
+f-9     (madre Sofia Clara)
+f-10    (padre Mateo Amancio)
+f-11    (madre Calixta Amancio)
+f-12    (padre Mateo Amanda)
+f-13    (madre Sofia Amanda)
+f-14    (padre Joao Pepito)
+f-15    (madre Clara Pepito)
+f-16    (padre Joao Julia)
+f-17    (madre Clara Julia)
+f-18    (padre Mario Julieta)
+f-19    (madre Julia Julieta)
+f-20    (padre Mario Juanete)
+f-21    (madre Julia Juanete)
+f-22    (hermanode Carlos Mateo Clara)
+f-23    (hermanode Mateo Clara Carlos)
+f-24    (hermanode Clara Carlos Mateo)
+f-25    (hermanode Amancio Amanda)
+f-26    (hermanode Amanda Amancio)
+f-27    (hermanode Pepito Julia)
+f-28    (hermanode Julia Pepito)
+f-29    (hermanode Julieta Juanete)
+f-30    (hermanode Juanete Julieta)
+f-31    (mujer Sofia)
+f-32    (mujer Calixta)
+f-33    (mujer Clara)
+f-34    (mujer Amanda)
+f-35    (mujer Julia)
+f-36    (mujer Julieta)
+f-37    (hombre Juan)
+f-38    (hombre Carlos)
+f-39    (hombre Mateo)
+f-40    (hombre Joao)
+f-41    (hombre Amancio)
+f-42    (hombre Pepito)
+f-43    (hombre Mario)
+f-44    (hombre Juanete)
+f-45    (abuela Sofia Julia)
+f-46    (abuelo Juan Julia)
+f-47    (nieta Julia Juan)
+f-48    (bisabuela Sofia Juanete)
+f-49    (bisabuelo Juan Juanete)
+f-50    (bisabuela Sofia Julieta)
+f-51    (bisabuelo Juan Julieta)
+f-52    (nieta Julia Sofia)
+f-53    (abuela Sofia Pepito)
+f-54    (abuelo Juan Pepito)
+f-55    (nieto Pepito Juan)
+f-56    (nieto Pepito Sofia)
+f-57    (abuela Sofia Amanda)
+f-58    (abuelo Juan Amanda)
+f-59    (nieta Amanda Juan)
+f-60    (nieta Amanda Sofia)
+f-61    (abuela Sofia Amancio)
+f-62    (abuelo Juan Amancio)
+f-63    (nieto Amancio Juan)
+f-64    (nieto Amancio Sofia)
+f-65    (abuela Clara Juanete)
+f-66    (abuelo Joao Juanete)
+f-67    (nieto Juanete Joao)
+f-68    (nieto Juanete Clara)
+f-69    (abuela Clara Julieta)
+f-70    (abuelo Joao Julieta)
+f-71    (nieta Julieta Joao)
+f-72    (nieta Julieta Clara)
+f-73    (tia Clara Amancio)
+f-74    (sobrino Amancio Clara)
+f-75    (tia Clara Amanda)
+f-76    (sobrina Amanda Clara)
+f-77    (tia Calixta Pepito)
+f-78    (sobrino Pepito Calixta)
+f-79    (tia Calixta Julia)
+f-80    (sobrina Julia Calixta)
+f-81    (tio Pepito Julieta)
+f-82    (sobrina Julieta Pepito)
+f-83    (tio Pepito Juanete)
+f-84    (sobrino Juanete Pepito)
+f-85    (tio Joao Amancio)
+f-86    (sobrino Amancio Joao)
+f-87    (tio Joao Amanda)
+f-88    (sobrina Amanda Joao)
+f-89    (tio Mateo Pepito)
+f-90    (sobrino Pepito Mateo)
+f-91    (tio Mateo Julia)
+f-92    (sobrina Julia Mateo)
+f-93    (tio Carlos Amancio)
+f-94    (sobrino Amancio Carlos)
+f-95    (tio Carlos Amanda)
+f-96    (sobrina Amanda Carlos)
+f-97    (tio Carlos Pepito)
+f-98    (sobrino Pepito Carlos)
+f-99    (tio Carlos Julia)
+f-100   (sobrina Julia Carlos)
+For a total of 101 facts.
+CLIPS> (dribble-off)
