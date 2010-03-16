@@ -3,6 +3,9 @@ function bootstrapping(fichero_de_entrada,num_pares_train_test)
 
 [file,error] = fopen([fichero_de_entrada,'.arff'],'r');
 
+%Eliminamos la terminacion _train
+fichero_de_entrada = fichero_de_entrada(1:length(fichero_de_entrada)-6);
+
 %Comprobamos si el fichero se ha podido abrir
 if file ~= -1
     %variable que indica si ha encontrado o no el principio de los datos
@@ -34,30 +37,33 @@ if file ~= -1
         acaba = length(datos);
         indices_datos = [ indices_datos;[empieza acaba]];
        end
-    end 
+    end ,
     
     
     %Generamos los k pares de entrenamiento y test
     for k = 1:num_pares_train_test
-        %calculamos el numero de muestras de test
-        %el numero de muestras de la submuestra será un porcentaje aleatorio
-        %entre 10 y 40 por ciento.
-        porcentaje_test = mod(round(100*rand(1)),30) + 10;
-        num_muestras_test = length(indices_datos) * (porcentaje_test / 100);
+        
+        %Almacenamos el número de elementos de datos de entrenamiento
+        num_datos = length(indices_datos);
+        
+        %Cojo num_datos elementos para el vector de entrenamiento y marco
+        %los que ya he seleccionado
+        datosEntrenamiento = [cabecera];
+        escogidos = zeros(1,num_datos);
+        for contador = 1:num_datos
+            %Selecionamos uno aleatoriamente.
+            aleatorio = fix(rand()*num_datos);
+            if ~aleatorio
+               aleatorio = 1 ;
+            end
+            datosEntrenamiento = [datosEntrenamiento datos(indices_datos(aleatorio,1):indices_datos(aleatorio,2))];
+            escogidos(aleatorio) = 1;
+        end
 
-        %creamos un vector de 1 con el numero de elementos de test
-        unos = ones(1,num_muestras_test);
-        %creamos un vector de 0 con el numero de elementos de entrenamiento
-        ceros = zeros(1,length(indices_datos)-num_muestras_test);
-
-        %barajo par seleccionar aleatoriamente
-        separacion = vectorShuffle(unos,ceros);
 
         datosTest = [cabecera];
-        datosEntrenamiento = [cabecera datos];
-
-        for contador = 1:length(separacion)
-            if separacion(contador)
+        for contador = 1:num_datos
+            if ~escogidos(contador)
                 datosTest = [datosTest datos(indices_datos(contador,1):indices_datos(contador,2))];
             end
         end
