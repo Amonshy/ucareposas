@@ -2,6 +2,8 @@ function random_hold_out(fichero_de_entrada,num_par_train_test)
 %funcion random_hold_out(fichero_de_entrada,num_par_train_test)
 
 [file,error] = fopen([fichero_de_entrada,'.arff'],'r');
+%Eliminamos la terminacion _train
+fichero_de_entrada = fichero_de_entrada(1:length(fichero_de_entrada)-6);
 
 %Comprobamos si el fichero se ha podido abrir
 if file ~= -1
