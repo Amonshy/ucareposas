@@ -39,23 +39,19 @@ if file ~= -1
        end
     end ,
     
+    %Almacenamos el número de elementos de datos de entrenamiento
+    num_datos = length(indices_datos);
     
     %Generamos los k pares de entrenamiento y test
     for k = 1:num_pares_train_test
-        
-        %Almacenamos el número de elementos de datos de entrenamiento
-        num_datos = length(indices_datos);
-        
+           
         %Cojo num_datos elementos para el vector de entrenamiento y marco
         %los que ya he seleccionado
         datosEntrenamiento = [cabecera];
         escogidos = zeros(1,num_datos);
         for contador = 1:num_datos
             %Selecionamos uno aleatoriamente.
-            aleatorio = fix(rand()*num_datos);
-            if ~aleatorio
-               aleatorio = 1 ;
-            end
+            aleatorio = fix(rand()*num_datos) + 1;
             datosEntrenamiento = [datosEntrenamiento datos(indices_datos(aleatorio,1):indices_datos(aleatorio,2))];
             escogidos(aleatorio) = 1;
         end
