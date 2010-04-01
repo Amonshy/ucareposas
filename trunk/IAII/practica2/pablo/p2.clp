@@ -37,72 +37,58 @@
 (defrule reglaNietos
 	(persona (nombre ?x) (hijos $?listaHijos&:(eq (member$ NIL $?listaHijos) FALSE)))
 	?a<-(persona (hijos $? ?x $?) (nietos $?listaNietos))
+	(test (not (subsetp $?listaHijos $?listaNietos)))
 =>
-	;;Comprobación para ver si no tenia ningun nieto asignado
-	(if (not (member$ NIL $?listaNietos)) then
-		
-		;;Comprobación para no meter de nuevo los nietos
-		(bind ?estan (member$ $?listaHijos $?listaNietos))
-		(if (not ?estan) then
-			(modify ?a (nietos (create$ $?listaHijos $?listaNietos)))
-		)
-	else
-		(modify ?a (nietos $?listaHijos))
-	)
+	(bind $?listaNietos (delete-member$ $?listaNietos NIL))
+	(modify ?a (nietos (create$ $?listaHijos $?listaNietos)))
 )
 
 (defrule reglaAbuelos
 	?nieto<-(persona (nombre ?x) (abuelos $?listAbuelos&:(< (length$ $?listAbuelos) 2)))
 	(persona (nombre ?abu) (nietos $? ?x $?))
+	(test (not (member$ ?abu $?listAbuelos))) 
 =>
-	(if (not (member$ NIL $?listAbuelos)) then
-		(if (not (member$ ?abu $?listAbuelos)) then
-			(modify ?nieto (abuelos (create$ $?listAbuelos ?abu)))
-		)
-	else
-		(modify ?nieto (abuelos (create$ ?abu)))
-	)
+	(bind $?listAbuelos (delete-member$ $?listAbuelos NIL))
+	(modify ?nieto (abuelos (create$ $?listAbuelos ?abu)))
+
 )
 
 (defrule reglaTios
 	?s<-(persona (nombre ?x) (tios $?listaTios))
 	(persona (hijos $? ?x $?) (hermanos $?listaHerm&:(not (member$ NIL $?listaHerm))))
+	(test (not (subsetp $?listaHerm $?listaTios)))
 =>
-	(if (not (member$ NIL $?listaTios)) then
-		(if (not (member$ $?listaHerm $?listaTios)) then
-			(modify ?s (tios (create$ $?listaTios $?listaHerm)))
-		)		
-	else
-		(modify ?s (tios $?listaHerm))
-	)
-
+	(bind $?listaTios (delete-member$ $?listaTios NIL))
+	(modify ?s (tios (create$ $?listaTios $?listaHerm)))
 )	
 
 (defrule reglaPrimos
 	(persona (nombre ?y) (hijos $?lHijos&:(not (member$ NIL $?lHijos))))
 	?p<-(persona (nombre ?x) (tios $? ?y $?) (primos $?lPrimos))
+	(test (not (subsetp $?lHijos $?lPrimos)))
 =>
-	(if (not (member$ NIL $?lPrimos)) then
-		(if (not (member$ $?lHijos $?lPrimos)) then
-			(modify ?p (primos (create$ $?lHijos $?lPrimos)))
-		)		
-	else
-		(modify ?p (primos $?lHijos))
-	)
+	(bind $?lPrimos (delete-member$ $?lPrimos NIL))
+	(modify ?p (primos (create$ $?lHijos $?lPrimos)))
 )
 
-(defrule reglaPrimosPrimas
-  (persona (nombre ?z) (sexo ?s))
+(defrule reglaImprimePrimas
+  (persona (nombre ?z) (sexo mujer))
   (persona (nombre ?y) (hijos $? ?z $?))
   (persona (nombre ?x) (tios $? ?y $?))
   (not (impreso ?z ?x))
   =>
   (assert (impreso ?z ?x))
-  (if (eq ?s mujer) then
-    (printout t ?z " es prima de " ?x crlf)
-  else
-    (printout t ?z " es primo de " ?x crlf)
-  )
+  (printout t ?z " es prima de " ?x crlf)
+)
+
+(defrule reglaImprimePrimos
+  (persona (nombre ?z) (sexo hombre))
+  (persona (nombre ?y) (hijos $? ?z $?))
+  (persona (nombre ?x) (tios $? ?y $?))
+  (not (impreso ?z ?x))
+  =>
+  (assert (impreso ?z ?x))
+  (printout t ?z " es primo de " ?x crlf)
 )
 
 (run)
