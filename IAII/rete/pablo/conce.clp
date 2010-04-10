@@ -8,6 +8,7 @@
 	     (slot consumo))
 
 (deftemplate formulario
+	     (multislot sugerencia (default NIL))
 	     (slot precio (default 13000))
 	     (slot maletero (allowed-values pequeno mediano grande) (default grande))
 	     (slot caballos (default 80))
@@ -25,13 +26,17 @@
 (reset)
 
 (defrule sugerencia
-	(formulario (precio ?p) (maletero ?m) (caballos ?c) (abs ?a) (consumo ?con))
+	?for <- (formulario (precio ?p) (maletero ?m) (caballos ?c) (abs ?a) (consumo ?con) (sugerencia $?s))
 	(coche (modelo ?mod) (precio ?pre) (maletero ?m) (caballos ?cc) (abs ?a) (consumo ?co))
 	(test (<= ?pre ?p))
 	(test (>= ?cc ?c))
 	(test (<= ?co ?con))
+	(test (not (member$ ?mod $?s)))
+
 	=>
-	(assert (sugerencia modelo ?mod))
+	(bind $?s (delete-member$ $?s NIL))
+	(modify ?for (sugerencia (create$ $?s ?mod)))
+
 )
 
 %Demanda del usuario
