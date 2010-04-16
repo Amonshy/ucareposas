@@ -101,9 +101,172 @@
 	)
 
 	;;******Busqueda de muertos
+	(bind ?muertos "Desconocidos")
+	;;Palabras relacionadas con muertos
+	(bind ?relacionMuertos (create$ "muertos" "mato" "murieron" "acabo con la vida de" "muertes" ))
+
+	(progn$ (?palabra ?relacionMuertos)
+		(bind ?posPalabraMuerte (str-index ?palabra (lowcase ?cuerpo)))
+		(if ?posPalabraMuerte
+			then	
+			;;Buscamos el numero de muertos antes
+			(bind ?posibleMuertosAntes "")
+			(bind ?encontrado FALSE)
+			(bind ?simbolos (explode$ (sub-string 1 ?posPalabraMuerte ?cuerpo)))
+			(bind ?numElementos (length$ ?simbolos))
+			(bind ?sim (nth$ ?numElementos ?simbolos))
+			(while (and (not ?encontrado) (not (eq ?numElementos 0))) do
+				(if (numberp ?sim)
+					then
+					(bind ?encontrado TRUE)
+					(bind ?posibleMuertosAntes (str-cat ?sim))
+				)
+				(bind ?numElementos (- ?numElementos 1))
+				(bind ?sim (nth$ ?numElementos ?simbolos))
+			)
+			;;Buscamos el numero de muertos despues	
+			(bind ?posibleMuertosDespues "")	
+			(bind ?encontrado FALSE)
+			(bind ?simbolos (explode$ (sub-string ?posPalabraMuerte (length$ ?cuerpo) ?cuerpo)))
+			(bind ?numElementos (length$ ?simbolos))
+			(bind ?i 1)
+			(while (and (not ?encontrado) (not (eq ?numElementos ?i))) do
+				(bind ?sim (nth$ ?i ?simbolos))
+				(if (numberp ?sim)
+					then
+					(bind ?encontrado TRUE)
+					(bind ?posibleMuertosDespues (str-cat ?sim))
+				)
+				(bind ?i (+ ?i 1))
+			)
+			;;El numero que esté mas cerca de la palabra relacionada con la muerte consideramos que es el numero de muertes
+			(if (< (abs (- (str-index ?posibleMuertosDespues ?cuerpo) ?posPalabraMuerte)) 
+				(abs (- (str-index ?posibleMuertosAntes ?cuerpo) ?posPalabraMuerte)))
+				then
+					(bind ?muertos ?posibleMuertosDespues)
+				else
+					(bind ?muertos ?posibleMuertosAntes)
+			)
+		)
+	)
+
+	;;******Busqueda heridos
+	(bind ?heridos "Desconocidos")
+	;;Palabras relacionadas con heridos
+	(bind ?relacionHeridos (create$ "heridos" "hirio" "resultaron heridos" "resultaron heridas"))
+
+	(progn$ (?palabra ?relacionHeridos)
+		(bind ?posPalabraHeridos (str-index ?palabra (lowcase ?cuerpo)))
+		(if ?posPalabraHeridos
+			then	
+			;;Buscamos el numero de heridos antes
+			(bind ?posibleHeridosAntes "")
+			(bind ?encontrado FALSE)
+			(bind ?simbolos (explode$ (sub-string 1 ?posPalabraHeridos ?cuerpo)))
+			(bind ?numElementos (length$ ?simbolos))
+			(bind ?sim (nth$ ?numElementos ?simbolos))
+			(while (and (not ?encontrado) (not (eq ?numElementos 0))) do
+				(if (numberp ?sim)
+					then
+					(bind ?encontrado TRUE)
+					(bind ?posibleHeridosAntes (str-cat ?sim))
+				)
+				(bind ?numElementos (- ?numElementos 1))
+				(bind ?sim (nth$ ?numElementos ?simbolos))
+			)
+			;;Buscamos el numero de heridos despues	
+			(bind ?posibleHeridosDespues "")	
+			(bind ?encontrado FALSE)
+			(bind ?simbolos (explode$ (sub-string ?posPalabraHeridos (length$ ?cuerpo) ?cuerpo)))
+			(bind ?numElementos (length$ ?simbolos))
+			(bind ?i 1)
+			(while (and (not ?encontrado) (not (eq ?numElementos ?i))) do
+				(bind ?sim (nth$ ?i ?simbolos))
+				(if (numberp ?sim)
+					then
+					(bind ?encontrado TRUE)
+					(bind ?posibleHeridosDespues (str-cat ?sim))
+				)
+				(bind ?i (+ ?i 1))
+			)
+			;;El numero que esté mas cerca de la palabra relacionada con los heridos consideramos que es el numero de heridos
+			(if (< (abs (- (str-index ?posibleHeridosDespues ?cuerpo) ?posPalabraHeridos)) 
+				(abs (- (str-index ?posibleHeridosAntes ?cuerpo) ?posPalabraHeridos)))
+				then
+					(bind ?heridos ?posibleHeridosDespues)
+				else
+					(bind ?heridos ?posibleHeridosAntes)
+			)
+		)
+	)
+	;;******Busqueda de falla
+	(bind ?falla "Desconocida")
+	(bind ?posFalla (str-index "falla" (lowcase ?cuerpo)))
+	(if ?posFalla
+		then
+		(bind ?falla "")
+		
+		;; Iterador para encontrar el nombre despues de falla		
+		(bind ?encontrado FALSE)
+
+		;;Separamos todos los elementos que estan despues de la palabra falla
+		(bind ?simbolos (explode$ (sub-string ?posFalla (length$ ?cuerpo) ?cuerpo)))
+
+		(bind ?numMaxElementos (length$ ?simbolos))
+		(bind ?iter 1)
+		
+		(bind ?sim (nth$ ?iter ?simbolos))
+
+		;;Buscamos
+		(while (and (not ?encontrado) (not (eq ?iter ?numElementos))) do
+			;;Si la palabra empieza por mayuscula es el nombre propio de la falla
+			(if (eq (sub-string 1 1 (str-cat ?sim)) (upcase (sub-string 1 1 (str-cat ?sim))))
+				then			
+				(bind ?encontrado TRUE)
+
+				;;Guarda esta parte del nombre en la variable
+				(bind ?falla (str-cat ?sim " "))
+				;;Paso al siguiente elemento
+				(bind ?iter (+ ?iter 1))
+				(bind ?sim (nth$ ?iter ?simbolos))	
+					
+				;;Mientras que haya palabras en mayusculas es el nombre propio
+				(while (eq (sub-string 1 1 (str-cat ?sim)) (upcase (sub-string 1 1 (str-cat ?sim)))) do
+					(bind ?falla (str-cat ?falla " " ?sim ))
+					(bind ?iter (+ ?iter 1))
+					(bind ?sim (nth$ ?iter ?simbolos))
+					
+				)
+			)
+			(bind ?iter (+ ?iter 1))
+			(bind ?sim (nth$ ?iter ?simbolos))
+		)
+	)	
+
+
+	;;******Busqueda Magnitud
+	(bind ?magnitud "Desconocida")
+	(bind ?posMagnitud (str-index "magnitud" (lowcase ?cuerpo)))
+
+	(if ?posMagnitud
+		then
+		(bind ?encontrado FALSE)
+		(bind ?simbolos (explode$ (sub-string ?posMagnitud (length$ ?cuerpo) ?cuerpo)))
+		(bind ?numElementos (length$ ?simbolos))
+		(bind ?i 1)
+		(while (and (not (eq ?i ?numElementos)) (not ?encontrado))
+			(bind ?sim (nth$ ?i ?simbolos))
+			(if (floatp ?sim)
+				then
+				(bind ?magnitud (str-cat ?sim))
+			)
+			(bind ?i (+ ?i 1))			
+		)
+	)
 
 	;;Guardamos el suceso
-	(make-instance [ter] of TERREMOTO (hora ?hora) (dia ?dia) (lugar ?lugar) (dagnos ?dagnos))
+	(make-instance [ter] of TERREMOTO (hora ?hora) (dia ?dia) (lugar ?lugar) (dagnos ?dagnos) (falla ?falla)
+					  (muertos ?muertos) (heridos ?heridos) (magnitud ?magnitud))
 );
 
 ;;***********************************
@@ -148,7 +311,7 @@
 ;;
 ;;*********************************** 
 
-(make-instance noticia of NOTICIA (titular "TERREMOTO EN PERU") (cuerpo "Hoy, un serio terremoto de magnitud 8.5 sacudio Peru el percance mato a 25 personas y ocasiono daños materiales por valor de 500 millones de pesetas. El Presidente del Peru dijo que el area mas afectada, cercana a la falla de San Juan, ha sido durante años una zona de peligro"))
+(make-instance noticia of NOTICIA (titular "TERREMOTO EN PERU") (cuerpo "Hoy, un serio terremoto de magnitud 8.5 sacudio Peru el percance mato a 25 personas , un total de 98 personas resultaron heridas y ocasiono daños materiales por valor de 500 millones de pesetas. El Presidente del Peru dijo que el area mas afectada, cercana a la falla de San Juan, ha sido durante años una zona de peligro"))
 
 (send [ter] print)
 
