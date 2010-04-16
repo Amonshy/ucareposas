@@ -48,90 +48,16 @@
 	(bind ?encontrado FALSE)
 	
 	;;***********Busqueda del dia
-	(bind ?dia "")
-	(if (and (str-index "hoy" (lowcase ?cuerpo))
-		(not ?encontrado))
-		then
-		(bind ?encontrado TRUE)
-		(bind ?dia "Hoy")	
-	)
-	
-	(if (and (str-index "ayer" (lowcase ?cuerpo))
-		(not ?encontrado))
-		then
-		(bind ?encontrado TRUE)
-		(bind ?dia  "Ayer")
-	)
-	
-	(if (and (str-index "mañana" (lowcase ?cuerpo))
-		(not ?encontrado))
-		then
-		(bind ?encontrado TRUE)
-		(bind ?dia "mañana")
+	(bind ?dia "Desconocido")
+	(bind ?dias (create$ "hoy" "ayer" "antes de ayer" "mañana" "pasado mañana" "lunes" "martes" "miercoles"
+				"jueves" "viernes" "sabado" "domingo"))
+	(progn$ (?d ?dias)
+		(if (str-index ?d (lowcase ?cuerpo))
+			then
+			(bind ?dia ?d)
+		)
 	)
 
-	(if (and (str-index "pasado mañana" (lowcase ?cuerpo))
-		(not ?encontrado))
-		then
-		(bind ?encontrado TRUE)
-		(bind ?dia "Pasado Mañana")
-	)
-
-	(if (and (str-index "antes de ayer" (lowcase ?cuerpo))
-		(not ?encontrado))
-		then
-		(bind ?encontrado TRUE)
-		(bind ?dia "Antes de Ayer")
-	)
-
-	(if (and (str-index "lunes" (lowcase ?cuerpo))
-		(not ?encontrado))
-		then
-		(bind ?encontrado TRUE)
-		(bind ?dia "Lunes")
-	)
-
-	(if (and (str-index "martes" (lowcase ?cuerpo))
-		(not ?encontrado))
-		then
-		(bind ?encontrado TRUE)
-		(bind ?dia "Martes")
-	)
-	
-	(if (and (str-index "miercoles" (lowcase ?cuerpo))
-		(not ?encontrado))
-		then
-		(bind ?encontrado TRUE)
-		(bind ?dia "Miercoles")
-	)
-
-	(if (and (str-index "jueves" (lowcase ?cuerpo))
-		(not ?encontrado))
-		then
-		(bind ?encontrado TRUE)
-		(bind ?dia "Jueves")
-	)
-
-	(if (and (str-index "viernes" (lowcase ?cuerpo))
-		(not ?encontrado))
-		then
-		(bind ?encontrado TRUE)
-		(bind ?dia "Viernes")
-	)
-
-	(if (and (str-index "sabado" (lowcase ?cuerpo))
-		(not ?encontrado))
-		then
-		(bind ?encontrado TRUE)
-		(bind ?dia "Sabado")
-	)
-
-	(if (and (str-index "domingo" (lowcase ?cuerpo))
-		(not ?encontrado))
-		then
-		(bind ?encontrado TRUE)
-		(bind ?dia "Domingo")
-	)
 	;;*******Busqueda de la hora*******
 	(bind ?hora "Desconocida")
 	
@@ -159,15 +85,22 @@
 	(if ?posPtas
 		then
 		;;Busco el numero para la cantidad
-		(bind ?simbolos (explode$ ?cuerpo))
+		(bind ?simbolos (explode$ (sub-string 1 (+ ?posPtas 6) ?cuerpo)))
+		(bind ?encontrado FALSE)
 		(bind ?numElementos (length$ ?simbolos))
 		(bind ?sim (nth$ ?numElementos ?simbolos))
-		(while (and (not (numberp ?sim)) (not (eq ?numElementos 0))) do
-			(bind ?dagnos (str-cat ?sim " " ?dagnos)) 
+		(while (and (not ?encontrado) (not (eq ?numElementos 0))) do
+			(bind ?dagnos (str-cat ?sim " " ?dagnos))
+			(if (numberp ?sim)
+				then
+				(bind ?encontrado TRUE)
+			) 
 			(bind ?numElementos (- ?numElementos 1))
 			(bind ?sim (nth$ ?numElementos ?simbolos))
 		)
 	)
+
+	;;******Busqueda de muertos
 
 	;;Guardamos el suceso
 	(make-instance [ter] of TERREMOTO (hora ?hora) (dia ?dia) (lugar ?lugar) (dagnos ?dagnos))
