@@ -242,7 +242,8 @@
 ;; Devuelve una respuesta aleatoria cuando habla de directores
 ;;********************************************************
 
-(deffunction fraseRespuestaDirectorAleatoria (?num)
+(deffunction fraseRespuestaDirectorAleatoria ()
+	(bind ?num (mod (random) 5))
 	(bind ?res "")
 	(if (eq ?num 0)
 		then
@@ -271,7 +272,8 @@
 ;; Función fraseRespuestaPeliculaAleatoria            
 ;; Devuelve una respuesta aleatoria cuando habla de pelis
 ;;********************************************************
-(deffunction  fraseRespuestaPeliculaAleatoria (?num)
+(deffunction  fraseRespuestaPeliculaAleatoria ()
+	(bind ?num (mod (random) 5))
 	(bind ?res "")	
 	(if (eq ?num 0)
 		then
@@ -301,7 +303,8 @@
 ;; Función fraseRespuestaPeliculaDesconocidaAleatoria            
 ;; Devuelve una respuesta aleatoria cuando habla de pelis
 ;;********************************************************
-(deffunction  fraseRespuestaPeliculaDesconocidaAleatoria (?num)
+(deffunction  fraseRespuestaPeliculaDesconocidaAleatoria ()
+	(bind ?num (mod (random) 5))
 	(bind ?res "")	
 	(if (eq ?num 0)
 		then
@@ -331,7 +334,8 @@
 ;; Devuelve una respuesta aleatoria cuando habla de actores
 ;;********************************************************
 
-(deffunction fraseRespuestaActorActrizAleatoria (?num)
+(deffunction fraseRespuestaActorActrizAleatoria ()
+	(bind ?num (mod (random) 5))
 	(bind ?res "")	
 	(if (eq ?num 0)
 		then
@@ -361,7 +365,8 @@
 ;; Devuelve una respuesta aleatoria cuando habla de actores
 ;;********************************************************
 
-(deffunction fraseRespuestaGeneroDesconocidoAleatoria (?num)
+(deffunction fraseRespuestaGeneroDesconocidoAleatoria ()
+	(bind ?num (mod (random) 5))
 	(bind ?res "")	
 	(if (eq ?num 0)
 		then
@@ -420,7 +425,8 @@
 ;; Función fraseComentarioPeliculaAleatoria            
 ;; Devuelve una respuesta aleatoria cuando habla de pelis
 ;;********************************************************
-(deffunction  fraseComentarioPeliculaAleatoria (?peli ?num)
+(deffunction  fraseComentarioPeliculaAleatoria (?peli)
+	(bind ?num (mod (random) 5))
 	(bind ?res "")	
 	(if (eq ?num 0)
 		then
@@ -432,7 +438,7 @@
 	)
 	(if (eq ?num 2)
 		then
-		(bind ?res (str-cat ?peli " la conozco."))
+		(bind ?res (str-cat ?peli " es una opción más que recomendable."))
 	)
 	(if (eq ?num 3)
 		then
@@ -449,7 +455,8 @@
 ;; Función fraseComentarioActorAleatoria            
 ;; Devuelve una respuesta aleatoria cuando habla de pelis
 ;;********************************************************
-(deffunction  fraseComentarioActorAleatoria (?act ?num)
+(deffunction  fraseComentarioActorAleatoria (?act)
+	(bind ?num (mod (random) 4))
 	(bind ?res "")	
 	(if (eq ?num 0)
 		then
@@ -475,7 +482,8 @@
 ;; Función fraseComentarioActrizAleatoria            
 ;; Devuelve una respuesta aleatoria cuando habla de pelis
 ;;********************************************************
-(deffunction  fraseComentarioActrizAleatoria (?act ?num)
+(deffunction  fraseComentarioActrizAleatoria (?act)
+	(bind ?num (mod (random) 4))
 	(bind ?res "")	
 	(if (eq ?num 0)
 		then
@@ -496,7 +504,6 @@
 	?res
 )
 
-fraseProseguirAleatoria
 ;;***************************************
 ;; Función fraseProseguirAleatoria      *
 ;; Devuelve un director al azar         *
@@ -505,6 +512,32 @@ fraseProseguirAleatoria
 	(bind ?frases (create$ "¿Hablamos de otra cosa?" "¿Tienes otra pregunta?" "¿Comentamos algo mas?" "¿Que mas podriamos tocar?"))
 	(bind ?numMax (length$ ?frases))
 	(bind ?res (nth$ (+ (mod (random) ?numMax) 1) ?frases))
+	?res
+)
+
+;;***************************************
+;; Función fraseDespedidaAleatoria      *
+;; Devuelve una despedida al azar       *
+;;***************************************
+(deffunction fraseDespedidaAleatoria ()
+	(bind ?num (mod (random) 4))
+	(bind ?res "")	
+	(if (eq ?num 0)
+		then
+		(bind ?res "Ha sido un placer conversar de cine contigo. Que la fuerza te acompañe.")
+	)
+	(if (eq ?num 1)
+		then
+		(bind ?res "Hasta otra ocasión. Le espero pronto")
+	)
+	(if (eq ?num 2)
+		then
+		(bind ?res "Adios, iré a ver una películilla mientras tanto")
+	)
+	(if (eq ?num 3)
+		then
+		(bind ?res "Ciao amigo, see you later!!.")
+	)
 	?res
 )
 
@@ -593,12 +626,12 @@ fraseProseguirAleatoria
 	;;Espera una respuesta para director	
 	(if (eq ?tipresp "director")
 		then
-		(assert (respuesta (fraseRespuestaDirectorAleatoria (mod (random) 5))))	
+		(assert (respuesta (fraseRespuestaDirectorAleatoria)))	
 	)	
 	;;Espera una respuesta para actrices y actores
 	(if (or (eq ?tipresp "actor") (eq ?tipresp "actriz"))
 		then
-		(assert (respuesta (fraseRespuestaActorActrizAleatoria (mod (random) 5))))
+		(assert (respuesta (fraseRespuestaActorActrizAleatoria)))
 	)
 	;;Respuestas para pelicula
 	(if (eq ?tipresp "pelicula")
@@ -607,19 +640,19 @@ fraseProseguirAleatoria
 			then
 			(assert (respuesta "Entonces creo que no has visto esa pelicula, porque es genial, te la recomiendo."))
 			else
-			(assert (respuesta (fraseRespuestaPeliculaAleatoria (mod (random) 5))))	
+			(assert (respuesta (fraseRespuestaPeliculaAleatoria )))	
 		)
 	)
 	
 	(if (eq ?tipresp "pelicula no")
 		then
-		(assert (respuesta (fraseRespuestaPeliculaDesconocidaAleatoria (mod (random) 5))))	
+		(assert (respuesta (fraseRespuestaPeliculaDesconocidaAleatoria)))	
 
 	)
 
 	(if (eq ?tipresp "generodesconocido")
 		then
-		(assert (respuesta (fraseRespuestaGeneroDesconocidoAleatoria (mod (random) 5))))	
+		(assert (respuesta (fraseRespuestaGeneroDesconocidoAleatoria )))	
 
 	)
 
@@ -683,18 +716,18 @@ fraseProseguirAleatoria
 			then
 			(bind ?recomendado TRUE)
 			(assert (respuesta (str-cat
-					   	(fraseComentarioPeliculaAleatoria (peliculaAleatoria) (mod (random) 5))
-			 			(frasePreguntaPeliculaAleatoria )) esperarespuesta "pelicula"))	
+					   	(fraseComentarioPeliculaAleatoria (peliculaAleatoria))
+			 			(frasePreguntaPeliculaAleatoria)) esperarespuesta "pelicula"))	
 		)
 		(if (str-index "actor" ?cadena)
 			then
 			(bind ?recomendado TRUE)
-			(assert (respuesta (fraseComentarioActorAleatoria (actorAleatorio) (mod (random) 5))))	
+			(assert (respuesta (fraseComentarioActorAleatoria (actorAleatorio))))	
 		)
 		(if (str-index "actriz" ?cadena)
 			then
 			(bind ?recomendado TRUE)
-			(assert (respuesta (fraseComentarioActrizAleatoria (actrizAleatoria) (mod (random) 5))))	
+			(assert (respuesta (fraseComentarioActrizAleatoria (actrizAleatoria) )))	
 		)	
 		(if (str-index "director" ?cadena)
 			then
@@ -723,6 +756,23 @@ fraseProseguirAleatoria
 ;;  4. despedida
 ;;  5. encaminando
 ;;  6. saludo
+;;  7. hablandoDeDirectorConocido
+;;  8. hablandoDeDirectorDesconocido
+;;  9. actorConocido
+;;  10. actorDesconocido
+;;  11. actrizConocida
+;;  12. actrizDesconocida
+;;  13. cosasDeCine
+;;  14. peliculaConocida
+;;  15. peliculaDesconocida
+;;  16. queRecomendar
+;;  17. recomendarConcretamente
+;;  18. generoConocido
+;;  19. generoDesconocido
+;;  20. recomendarPeliGeneroConocido
+;;  21. recomendarPeliGeneroDesconocido
+;;  22. proseguir
+;;  23. responderEsperandoRespuesta
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
@@ -800,7 +850,7 @@ fraseProseguirAleatoria
 	?act <- (actor ?a)
 	(test (not (eq ?a no)))
 =>
-	(assert (respuesta (fraseComentarioActorAleatoria ?a (mod (random) 4))))
+	(assert (respuesta (fraseComentarioActorAleatoria ?a )))
 	(retract ?act)
 )
 
@@ -826,7 +876,7 @@ fraseProseguirAleatoria
 	?act <- (actriz ?a)
 	(test (not (eq ?a no)))
 =>
-	(assert (respuesta (fraseComentarioActrizAleatoria ?a (mod (random) 4))))
+	(assert (respuesta (fraseComentarioActrizAleatoria ?a)))
 	(retract ?act)
 )
 
@@ -864,7 +914,7 @@ fraseProseguirAleatoria
 	?pel <- (pelicula ?p)
 	(test (not (eq ?p no)))
 =>
-	(assert (respuesta (str-cat (fraseComentarioPeliculaAleatoria ?p (mod (random) 5)) (frasePreguntaPeliculaAleatoria)) esperarespuesta "pelicula"))
+	(assert (respuesta (str-cat (fraseComentarioPeliculaAleatoria ?p ) (frasePreguntaPeliculaAleatoria)) esperarespuesta "pelicula"))
 	
 	(retract ?pel)	
 )
@@ -952,7 +1002,7 @@ fraseProseguirAleatoria
 	(test (not (eq ?g no)))
 =>
 	(retract ?rec)	
-	(assert (respuesta (str-cat (fraseComentarioPeliculaAleatoria (peliculaGeneroAleatoria ?g) (mod (random) 5)))))
+	(assert (respuesta (str-cat (fraseComentarioPeliculaAleatoria (peliculaGeneroAleatoria ?g)))))
 	
 )
 
@@ -1009,7 +1059,7 @@ fraseProseguirAleatoria
   (despedida)
 =>
   (printout t 
-"         Cinefilo> Ha sido un placer conversar de cine contigo. Que la fuerza te acompañe." crlf crlf crlf)
+"         Cinefilo> " (fraseDespedidaAleatoria)  crlf crlf crlf)
   (retract *)
   (halt)
 )
