@@ -542,6 +542,22 @@
 )
 
 ;;***************************************
+;; Función fraseEncaminaAleatoria      *
+;; Devuelve una despedida al azar       *
+;;***************************************
+(deffunction fraseEncaminaAleatoria ()
+	(bind ?num (mod (random) 4))
+	(bind ?frase (create$ 
+		"Creo que se está yendo por las ramas, ¿por qué no hablamos de algo relacionado con el cine?, y si no le parece correcto lo dejamos por el momento."
+		"Tus conocimientos se escapan a mi razón, por favor volvamos a hablar de cine."
+		"Me estas hablando de algo que no conozco, creo que deberia buscarse otro profesional."
+		"Uy uy uy, me parece que lo que estas diciendo no tiene sentido alguno para mí."
+		"Esto que me cuentas no lo entiendo muy bien, podriamos volver a hablar de cine."
+	))
+	?res
+)
+
+;;***************************************
 ;; Función directorAleatorio            *
 ;; Devuelve un director al azar         *
 ;;***************************************
@@ -1073,7 +1089,7 @@
   (encamina)
 =>
      (printout t 
-"       Cinefilo> Creo que se está yendo por las ramas, ¿por qué no hablamos de algo relacionado con el cine?, y si no le parece correcto lo dejamos por el momento." crlf)
+"       Cinefilo> " (fraseEncaminaAleatoria)  crlf)
      (retract *)
      (assert (Achatear))  ;;; volvemos al bucle para esperar otra resp
 )
