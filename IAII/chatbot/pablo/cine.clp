@@ -536,7 +536,7 @@
 	)
 	(if (eq ?num 3)
 		then
-		(bind ?res "Ciao amigo, see you later!!.")
+		(bind ?res "Sayonara, baby.")
 	)
 	?res
 )
@@ -554,7 +554,7 @@
 		"Uy uy uy, me parece que lo que estas diciendo no tiene sentido alguno para mí."
 		"Esto que me cuentas no lo entiendo muy bien, podriamos volver a hablar de cine."
 	))
-	?res
+	(nth$ ?num ?frase)
 )
 
 ;;***************************************
