@@ -1,13 +1,10 @@
 % Base de datos de alumnos
-
 @relation alumnos_2009_10_de_Mineria_de_Datos
-
 @attribute nombre string
 @attribute sexo {H,M}
 @attribute edad integer
 @attribute peso real
 @attribute estatura real
-
 @data
 Emma, M, 22, 52, 1.53
 Jose_J, H, 21, 61, 1.73

@@ -9,7 +9,7 @@ if file ~= -1
 
     %buscamos data para contar el numero de datos a partir de ahi
     linea = fgets(file);
-    while lower(linea(1:5)) ~= '@data'
+    while length(linea)>=5 & lower(linea(1:5)) ~= '@data'
         linea = fgets(file);
     end;
 
