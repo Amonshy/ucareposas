@@ -78,7 +78,7 @@ if file ~= -1
     
     datosTest = [cabecera];
     
-    close('all');
+    fclose('all');
 else
     sprintf(error);
 end
