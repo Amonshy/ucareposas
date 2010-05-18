@@ -46,18 +46,18 @@ loopColumnas:
 	   sv 0(r9), v3 ;Guardamos la solucion en un temporal
 
            addi r13, r0, 4 ;Numero de elementos a sumar
-	   addi r12, r0, 0 ; Inicializamos el acumulador de suma
+	   addf f1, f0, f0 ; Inicializamos el acumulador de suma
 loopSuma:
           
-          ld r14, 0(r9) ;Guardamos el primer elemento en el registro 14
-	  addi r12,r14,r12 ;y lo vamos sumando en el acumulado
+          lf f2, 0(r9) ;Guardamos el primer elemento en el registro f2
+	  addf f1,f1,f2 ;y lo vamos sumando en el acumulado
 	  addi r9,r9,8 ;apuntamos al siguiente elemento temporal
            
           subi r13, r13, 1 ;Vamos recorriendo todos los elementos a sumar
 	  bnez r13, loopSuma ;Si terminamos entonces se acabó la suma
 	  nop
 
-	  sf 0(r3), r12 ;Guardamos el elemento PETA!!!!!
+	  sf 0(r3), f1 ;Guardamos el elemento
 	  addi r3, r3, 8 ;Ya hemos metido un elemento de z y vamos a por otro!!
 
           addi r9, r0, temp ;R9 debe volver a la posicion inicial tras la suma para en la siguiente iteracion empezar en el primer elemento
