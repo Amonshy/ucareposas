@@ -53,6 +53,6 @@ for i=1:10,
       
 end;
 
-errorPromedio = erroresPrincipal;
+errorPromedio = mean(erroresPrincipal);
 k_optima = k_op;
 end
