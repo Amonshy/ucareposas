@@ -1,11 +1,17 @@
 \section{Preguntas frecuentes}
 \begin{itemize}
- \item ¿A qué es debido el error ``nvcc fatal   : nvcc cannot find a
-  supported cl version. Only MSVC 8.0 and MSVC 9.0 are supported''?\\
+ \item  \textbf{¿A qué es debido el error ``nvcc fatal   : nvcc cannot find a
+  supported cl version. Only MSVC 8.0 and MSVC 9.0 are supported''?}\\\\
   Se debe a que se está utilizando el compilador de Microsoft Visual Studio 2010
   que todavía no está soportado. La solución es instalar una versión anterior.
- \item ¿A qué es debido el error ``nvcc fatal   : Cannot find compiler 'cl.exe' in PATH''?\\
+ \item \textbf{¿A qué es debido el error ``nvcc fatal   : Cannot find compiler 'cl.exe' in PATH''?}\\\\
   Se debe a que no se ha añadido el compilador al path. La solución es añadirlo de la forma
   descrita en la sección de configuracion del capítulo de instalación o indicar la ruta con
   la opción -ccbin.
+  \item \textbf{¿Es necesario instalar el SDK de NVIDIA?}\\\\
+    Para el nivel de trabajo al que está orientado este manual, no es necesario instalar el SDK de NDVIDIA.
+  \item \textbf{¿Puedo utilizar CUDA en mi ordenador?}\\\\
+  Es necesario disponer de una tarjeta gráfica NVIDIA. Existen emuladores que permiten utilizar CUDA aunque no se disponga de una tarjeta gráfica NVIDIA, pero no hemos conseguido resultados satisfactorios. Estos emuladores funcionan bajo las tarjeta gráficas ATI, la esencia de este emulador es convertir las rutinas de CUDA en la rutina equivalente de OpenCL.
+ \item \textbf{Tengo una tarjeta NVIDIA y no consigo hacer funcionar CUDA}\\\\
+Puede ser que tu tarjeta no soporte CUDA, puedes mirar las tarjeta NVIDIA que son compatibles con CUDA en la siguiente dirección: \\\\ \begin{verbatim} http://en.wikipedia.org/wiki/CUDA. \end{verbatim}
 \end{itemize}

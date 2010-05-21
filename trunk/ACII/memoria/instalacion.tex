@@ -5,7 +5,7 @@ Lo primero que tenemos que hacer es descargar los ``Developer Drivers'' de la si
   \begin{verbatim}
    http://developer.nvidia.com/object/cuda_3_0_downloads.html
   \end{verbatim}
-Nos descargamos el los drivers que correspondan con nuestra versión de GNU/Linux.
+Nos descargamos los drivers que correspondan con nuestra versión de GNU/Linux.
 Para instalarlo tenemos que cambiar a una consola de sistema pulsando ctrl+alt+f2, por ejemplo. Una vez hecho esto
 nos logueamos y terminamos el entorno gráfico de la siguiente forma (como superusuario):
 \begin{description}
@@ -41,19 +41,19 @@ para ello creamos el archivo\\
 \comando{/etc/ld.so.conf.d/libcuda.conf}\\
 con el siguiente contenido\\
 \comando{/usr/local/cuda/lib}
-
+\figura{img/libcuda.png}{scale=0.8}{libcuda.conf}{libcuda.conf}{H}
 \subsection{Windows}
 \subsubsection{Drivers}
 El primer paso que debemos seguir es descargar los últimos ``Developer Drivers''. Los podemos encontrar en la página
   \begin{verbatim}
    http://developer.nvidia.com/object/cuda_3_0_downloads.html
   \end{verbatim}
-Seleccionaremos Windows y el driver el adecuado según nuestra
-versión, diferenciando si es de 32 o 64 bits. Una vez descargados procedemos con la instalacíon siguiendo
+Seleccionaremos Windows y como driver el adecuado según nuestra
+versión, diferenciando si es de 32 o 64 bits. Una vez descargados procederemos con la instalacíon siguiendo
 los pasos que nos proporciona el asistente.
 \subsubsection{CUDA Toolkit}
 Lo siguiente que tenemos que hacer es descargar e instalar ``CUDA Toolkit'' que contiene las herramientas necesarias
-(como el compilador nvcc) para compilar un programa de CUDA. Para ello procedemos de forma analoga a la sección anterior.
+(como el compilador nvcc) para compilar un programa de CUDA. Para ello procederemos de forma análoga a la sección anterior.
 \subsubsection{SDK}
 También podemos instalar el SDK que contiene ejemplos y documentación sobre CUDA, pero no es necesario.
 \subsubsection{Microsoft Visual Studio}
@@ -80,4 +80,4 @@ En la sección ``Variables del sistema'' buscaremos la variable ``Path'' y harem
 Añadiremos al final del campo ``Valor de variable'', separado con punto y coma, la ruta completa del compilador
 del Visual Studio (\comando{cl.exe}).
 \figura{pol4.png}{scale=0.5}{Paso 4}{paso4}{H}
-Una vez hecho todo esto el sistema estara preparado para compilar nuestro primer programa.
+Una vez hecho todo esto el sistema estará preparado para compilar nuestro primer programa.
