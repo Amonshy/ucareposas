@@ -1,0 +1,11 @@
+\section{Preguntas frecuentes}
+\begin{itemize}
+ \item ¿A qué es debido el error ``nvcc fatal   : nvcc cannot find a
+  supported cl version. Only MSVC 8.0 and MSVC 9.0 are supported''?\\
+  Se debe a que se está utilizando el compilador de Microsoft Visual Studio 2010
+  que todavía no está soportado. La solución es instalar una versión anterior.
+ \item ¿A qué es debido el error ``nvcc fatal   : Cannot find compiler 'cl.exe' in PATH''?\\
+  Se debe a que no se ha añadido el compilador al path. La solución es añadirlo de la forma
+  descrita en la sección de configuracion del capítulo de instalación o indicar la ruta con
+  la opción -ccbin.
+\end{itemize}
