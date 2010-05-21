@@ -54,5 +54,5 @@ for i=1:10,
 end;
 
 errorPromedio = mean(erroresPrincipal);
-k_optima = k_op;
+k_optima = mode(k_op);
 end
