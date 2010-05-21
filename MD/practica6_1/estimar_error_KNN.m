@@ -16,7 +16,6 @@ num_maximo_vecinos = 15;
 %k-fold-cross-validation para obtener 10 muestras de cada una de las
 %muestras
 for i=1:10,
-    disp(['numero: ' num2str(i)]);
     for j=1:10,
         %El formato de los ficheros generados con k-fold para cada una de
         %las 10 muestras están en la ruta
@@ -39,9 +38,6 @@ for i=1:10,
     end;
     k_op(i) = indice_k_optima;
 end;
-
-disp('k optima');
-k_op
 
 for i=1:10,
 
