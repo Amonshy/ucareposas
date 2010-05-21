@@ -1,0 +1,15 @@
+\section{Compilación}
+\subsection{GNU/Linux}
+\begin{lstlisting}[style=consola]
+nvcc -o hola hola.cu
+\end{lstlisting}
+\subsection{Windows}
+Si seguimos los pasos de la configuración del capítulo anterior bastará con escribir en la consola el siguiente comando:
+\begin{lstlisting}[style=consola]
+nvcc -o hola.exe hola.cu
+\end{lstlisting}
+
+Si no pusimos la ruta del compilador en el path del sistema podemos indicarlo con la opción -ccbin de la siguiente forma:
+\begin{lstlisting}[style=consola]
+nvcc -ccbin ``ruta_compilador\compilador.exe'' -o hola.exe hola.cu
+\end{lstlisting}

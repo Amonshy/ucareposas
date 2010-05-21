@@ -1,0 +1,83 @@
+\section{Instalación}
+\subsection{GNU/Linux}
+\subsubsection{Drivers}
+Lo primero que tenemos que hacer es descargar los ``Developer Drivers'' de la siguiente dirección
+  \begin{verbatim}
+   http://developer.nvidia.com/object/cuda_3_0_downloads.html
+  \end{verbatim}
+Nos descargamos el los drivers que correspondan con nuestra versión de GNU/Linux.
+Para instalarlo tenemos que cambiar a una consola de sistema pulsando ctrl+alt+f2, por ejemplo. Una vez hecho esto
+nos logueamos y terminamos el entorno gráfico de la siguiente forma (como superusuario):
+\begin{description}
+ \item[KDE] \comando{/etc/init.d/kdm stop}
+ \item[GNOME] \comando{etc/init.d/gdm stop}
+ \end{description}
+Ahora podemos proceder con la instalación del driver ejecutando como superusuario lo siguiente
+  \begin{lstlisting}[style=consola]
+  sh NombreDelDriver.run
+  \end{lstlisting}
+Lo único que nos queda por hacer es seguir los pasos del asistente.
+
+\subsubsection{CUDA Toolkit}
+Para instalar las herramientas de compilación ejecutamos lo siguiente como superusuario
+  \begin{lstlisting}[style=consola]
+  sh NombreDelToolkit.run
+  \end{lstlisting}
+
+\subsubsection{SDK}
+También podemos instalar el SDK que contiene ejemplos y documentación sobre CUDA, pero esto es opcional.
+\subsubsection{Configuración}
+Para poder utilizar el compilador \comando{nvcc} es necesario indicar donde se encuentra, para ello creamos el
+archivo\\
+\comando{/etc/profile.d/cuda.sh}\\
+con el siguiente contenido
+  \begin{lstlisting}[style=BASH]
+  #!/bin/sh
+  export PATH=$PATH:/usr/local/cuda/bin
+  \end{lstlisting}
+
+Solo nos queda indicar dónde se encuentran las bibliotecas para poder ejecutar los programas una vez compilados,
+para ello creamos el archivo\\
+\comando{/etc/ld.so.conf.d/libcuda.conf}\\
+con el siguiente contenido\\
+\comando{/usr/local/cuda/lib}
+
+\subsection{Windows}
+\subsubsection{Drivers}
+El primer paso que debemos seguir es descargar los últimos ``Developer Drivers''. Los podemos encontrar en la página
+  \begin{verbatim}
+   http://developer.nvidia.com/object/cuda_3_0_downloads.html
+  \end{verbatim}
+Seleccionaremos Windows y el driver el adecuado según nuestra
+versión, diferenciando si es de 32 o 64 bits. Una vez descargados procedemos con la instalacíon siguiendo
+los pasos que nos proporciona el asistente.
+\subsubsection{CUDA Toolkit}
+Lo siguiente que tenemos que hacer es descargar e instalar ``CUDA Toolkit'' que contiene las herramientas necesarias
+(como el compilador nvcc) para compilar un programa de CUDA. Para ello procedemos de forma analoga a la sección anterior.
+\subsubsection{SDK}
+También podemos instalar el SDK que contiene ejemplos y documentación sobre CUDA, pero no es necesario.
+\subsubsection{Microsoft Visual Studio}
+CUDA en Windows utiliza el compilador \comando{cl.exe} de Microsoft Visual Studio, por lo que deberemos instalarlo.
+Si no disponemos de ninguna licencia podemos obtener la versión Express que es gratuita y suficiente para nuestro propósito,
+aunque tendremos que registrarla, de forma gratuita también. Actualmente existen dos versiones Express, la 2005 y la 2010,
+pero la 2010 no está todavía soportada por CUDA, así que instalaremos la 2005. Para ello tenemos que entrar en la
+siguiente página web:
+  \begin{verbatim}
+   http://msdn.microsoft.com/es-es/express/aa975050.aspx
+  \end{verbatim}
+Buscamos Visual C++ 2005 Express Edition y seleccionamos nuestro idioma. Para instalarlo basta con seguir los pasos
+del asistente
+\subsubsection{Configuración}
+Lo que tenemos que hacer ahora es incluir el compilador \comando{cl.exe} en el path del sistema, para ello
+seguiremos los siguientes pasos.
+
+Primero haremos click con el botón derecho del ratón sobre Mi PC y luego en propiedades.
+\figura{pol1.png}{scale=0.5}{Paso 1}{paso1}{H}
+En segundo lugar seleccionaremos la pestaña ``Opciones avanzadas'' y haremos click en ``Variables de entorno''.
+\figura{pol2.png}{scale=0.5}{Paso 2}{paso2}{H}
+En la sección ``Variables del sistema'' buscaremos la variable ``Path'' y haremos click en ``Modificar''.
+\figura{pol3.png}{scale=0.5}{Paso 3}{paso3}{H}
+Añadiremos al final del campo ``Valor de variable'', separado con punto y coma, la ruta completa del compilador
+del Visual Studio (\comando{cl.exe}).
+\figura{pol4.png}{scale=0.5}{Paso 4}{paso4}{H}
+Una vez hecho todo esto el sistema estara preparado para compilar nuestro primer programa.
