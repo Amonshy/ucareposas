@@ -63,6 +63,6 @@ for i=1:10,
 end;
 
 errorPromedio = mean(erroresPrincipal);
-neurona_optima = mode(neurona_op);
-semilla_optima = mode(semilla_op);
+neurona_optima = neurona_op;
+semilla_optima = semilla_op;
 end
