@@ -1,4 +1,4 @@
-function [ errorPromedio neurona_optima semilla] = estimar_error_PerceptronMulticapa (nombre_bd)
+function [memoria errorPromedio neurona_optima semilla_optima] = estimar_error_PerceptronMulticapa (nombre_bd)
 % [ errorPromedio neurona_optima semilla] = estimar_error_PerceptronMulticapa (nombre_bd)
 %Estima el error medio del Perceptron Multicapa, a partir de los 10
 %pares de entrenamiento y test, generados en la carpeta 10kfoldoriginal.
@@ -8,8 +8,8 @@ nombreEstandarFicheroTrain = ['10kfoldoriginal/' nombre_bd '/' nombre_bd '_kfcv_
 nombreEstandarFicheroTest = ['10kfoldoriginal/'  nombre_bd '/' nombre_bd  '_kfcv_test'];
 
 %Numero máximo de semillas y neuronas que vamos a utilizar.
-num_maximo_semillas = 1;
-num_maximo_neuronas = 3;
+num_maximo_semillas = 5;
+num_maximo_neuronas = 10;
 %Semillas generadas aleatoriamente
 semillas = round(100*rand(1,num_maximo_semillas));
 
@@ -35,21 +35,33 @@ for i=1:10,
             end;
         end;
     end;
-     
+    memoria(i,:,:,:) = errores(:,:,:); %pa guardarlo tooo
+    
     %Calculamos la media de errores cometidos por cada par semilla/neurona
     %obtenido en cada fragmento j
     mediaPorSemillasNeuronas = mean(errores,3);
 
-    %Obtenemos para cada neurona cual ha sido su valor mínimo entre todas
-    %las semillas
-    [filaMin semilla] = min(mediaPorSEmillasNeuronas);
-    %Obtenemos ahora el minimo de todas las neuronas
-    [columnaMin neurona] = min(filaMin);
-    
-    %Guardamos la neurona
-    neurona_op(i) = neurona;
-    %Guardamos la semilla
-    semilla_op(i) = semillas(semilla(neurona));
+    if (num_maximo_semillas > 1)
+       
+        %Obtenemos para cada neurona cual ha sido su valor mínimo entre todas
+        %las semillas
+        [filaMin semilla] = min(mediaPorSemillasNeuronas);
+        %Obtenemos ahora el minimo de todas las neuronas
+        [columnaMin neuronas] = min(filaMin);
+
+        %Guardamos la neurona
+        neurona_op(i) = neuronas;
+        %Guardamos la semilla
+        semilla_op(i) = semillas(semilla(neuronas));
+    else
+        %Cuando solo tenemos una semilla sacamos la funcion optima
+        [filaMin neuronas] = min(mediaPorSemillasNeuronas);
+
+        %Guardamos la neurona
+        neurona_op(i) = neuronas;
+        %Guardamos la semilla
+        semilla_op(i) = semillas(1);
+    end
 end;
 
 for i=1:10,
