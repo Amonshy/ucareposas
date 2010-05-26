@@ -1,5 +1,5 @@
-function [memoria errorPromedio neurona_optima semilla_optima] = estimar_error_PerceptronMulticapa (nombre_bd)
-% [ errorPromedio neurona_optima semilla] = estimar_error_PerceptronMulticapa (nombre_bd)
+function [errorPromedio neurona_optima semilla_optima memoria semillasUtilizadas] = estimar_error_PerceptronMulticapa (nombre_bd)
+% [ errorPromedio neurona_optima semilla_optima] = estimar_error_PerceptronMulticapa (nombre_bd)
 %Estima el error medio del Perceptron Multicapa, a partir de los 10
 %pares de entrenamiento y test, generados en la carpeta 10kfoldoriginal.
 %nombre BD será el nombre de la base de datos bank o titanic.
@@ -12,7 +12,7 @@ num_maximo_semillas = 5;
 num_maximo_neuronas = 10;
 %Semillas generadas aleatoriamente
 semillas = round(100*rand(1,num_maximo_semillas));
-
+semillasUtilizadas = semillas;
 %Primero obtenemos la neurona y la semilla optima para cada una de las 10 muestras del k-fold
 %cross-validation que se han generado. Para ello utilizaremos de nuevo un
 %k-fold-cross-validation para obtener 10 muestras de cada una de las
@@ -54,7 +54,7 @@ for i=1:10,
         %Guardamos la semilla
         semilla_op(i) = semillas(semilla(neuronas));
     else
-        %Cuando solo tenemos una semilla sacamos la funcion optima
+        %Cuando solo tenemos una semilla sacamos la neurona optima
         [filaMin neuronas] = min(mediaPorSemillasNeuronas);
 
         %Guardamos la neurona
