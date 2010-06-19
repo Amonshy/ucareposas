@@ -26,21 +26,21 @@ hold on;
 plotpat(xprim,'xb')
 hold off;
 
-% Para una dimension
-
-W1 = pca(xprim,1);
-
-xpp = W1 * xprim;
-
-reconvertidos = pinv(W1) * xpp;
-
-error = sqrt(sumsqr(reconvertidos-xprim));
-
-W2 = W1 + 5;
-
-xppp = W2 * xprim;
-
-reconvertidos2 = pinv(W2) * xppp;
-
-error2 = sqrt(sumsqr(reconvertidos2-xprim));
-
+% % Para una dimension
+% 
+% W1 = pca(xprim,1);
+% 
+% xpp = W1 * xprim;
+% 
+% reconvertidos = pinv(W1) * xpp;
+% 
+% error = sqrt(sumsqr(reconvertidos-xprim));
+% 
+% W2 = W1 + 5;
+% 
+% xppp = W2 * xprim;
+% 
+% reconvertidos2 = pinv(W2) * xppp;
+% 
+% error2 = sqrt(sumsqr(reconvertidos2-xprim));
+% 
