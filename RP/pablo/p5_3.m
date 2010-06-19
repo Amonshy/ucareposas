@@ -33,7 +33,7 @@ ejex = minmax(x1pca(1, :));
 xr = ejex(1)-1:1:ejex(2)+1;
 ycalc = sol(1)*xr + sol(2);
 figure, plot(xr, ycalc);
-E=sum((yp-(sol(1)*x1pca(1,:)+sol(2))).^2)
+E=sum((yreal-(sol(1)*x1pca(1,:)+sol(2))).^2)
 
 
 %CON FIHSER
@@ -52,4 +52,4 @@ ejex = minmax(x1f(1, :));
 xr = ejex(1)-1:1:ejex(2)+1;
 yr = sol(1)*xr + sol(2);
 figure, plot(xr, yr);
-E=sum((yp-(sol(1)*x1pca(1,:)+sol(2))).^2)
+E=sum((yf-(sol(1)*x1pca(1,:)+sol(2))).^2)

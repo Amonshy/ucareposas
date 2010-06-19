@@ -106,4 +106,4 @@ A = sol(1); B = sol(2);
 A
 C = exp(B)
 
-plot (x2,C*x*exp(Ax),'r'); hold off;
+plot (x2,C*x*exp(A),'r'); hold off;
