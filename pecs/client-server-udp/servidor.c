@@ -5,7 +5,7 @@
 #include  <stdio.h>
 #include  <stdlib.h>
 
-#define DATA "Ella se arrebata, bata bata bata (8)"
+#define DATA "Ella se arrebata, bata bata bata"
 
 /*
   * In the included file <netinet/in.h> a sockaddr_in is defined as follows:
@@ -24,12 +24,14 @@ int main()
 
        int sock, length;
        struct sockaddr_in name;
+	struct sockaddr_in cliente;
        char buf[1024];
 	//Para enviar el mensaje
 	int tam_msg; //Tamaño del mensaje
 	struct hostent *hp, *gethostbyname();
 	char *ip_envio;
 	u_short puerto_envio;
+	int tam_struct_addr = sizeof(struct sockaddr_in);
 
 
        /* Creamos el socket desde el que vamosa a leer */
@@ -54,12 +56,16 @@ int main()
        }
        printf("El puerto del socket abierto es #%d\n", ntohs(name.sin_port));
        /* Leer del socket */
-       if ((tam_msg =recv(sock, buf, 1024, 0)) != -1)
+
+
+		
+
+       if ((tam_msg =recvfrom(sock, buf, 1024, 0, &cliente, &tam_struct_addr)) == -1)
              perror("Reciviendo el datagrama");
 
 	/* Obtención de los datos ¿Cómo? Solo falta eso para que se haga en función de lo recivido*/
-	ip_envio = "127.0.0.1";
-	puerto_envio = 65535;
+	ip_envio = inet_ntoa(cliente.sin_addr);
+	puerto_envio = ntohs(cliente.sin_port);
 
 	printf("-->El mensaje del cliente es: %s\n", buf);
 	printf("-->La ip del cliente es: %s\n", ip_envio);
