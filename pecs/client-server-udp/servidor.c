@@ -26,6 +26,7 @@ int main()
        struct sockaddr_in name;
        char buf[1024];
 	//Para enviar el mensaje
+	int tam_msg; //Tamaño del mensaje
 	struct hostent *hp, *gethostbyname();
 	char *ip_envio;
 	u_short puerto_envio;
@@ -53,7 +54,7 @@ int main()
        }
        printf("El puerto del socket abierto es #%d\n", ntohs(name.sin_port));
        /* Leer del socket */
-       if (read(sock, buf, 1024) < 0)
+       if ((tam_msg =recv(sock, buf, 1024, 0)) != -1)
              perror("Reciviendo el datagrama");
 
 	/* Obtención de los datos ¿Cómo? Solo falta eso para que se haga en función de lo recivido*/
@@ -61,9 +62,9 @@ int main()
 	puerto_envio = 65535;
 
 	printf("-->El mensaje del cliente es: %s\n", buf);
-	printf("-->La ip del cliente es: %d\n", ip_envio);
+	printf("-->La ip del cliente es: %s\n", ip_envio);
 	printf("-->El puerto del cliente es: %u\n", puerto_envio);
-	printf("-->El tamaño del mensaje del cliente es: %d\n", sizeof(buf));
+	printf("-->El tamaño del mensaje del cliente es: %d\n", tam_msg);
 
 	/* Respondemos al cliente */
 	printf("-->Estoy contestando\n");
