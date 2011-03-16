@@ -31,7 +31,7 @@ elif len(sys.argv) >= 3 and sys.argv[1] == 'client':
     print 'El socket del cliente es: ', s.getsockname()
     delay = 0.1
     while True:
-        s.send('Soy el cliente')
+        s.send('Soy el cliente, hola , ¿como estas? :)')
         print 'Waiting up to', delay, 'seconds for a reply'
         s.settimeout(delay)
         try:
@@ -44,7 +44,7 @@ elif len(sys.argv) >= 3 and sys.argv[1] == 'client':
             raise   # a real error, so we let the user see it
         else:
             break   # we are done, and can stop looping
-    print 'El servidor me ha dicho: ', repr(data)
+    print 'El servidor que tiene esta ip:', hostname , ' me ha dicho: ', repr(data)
 else:
     print >> sys.stderr, 'usage: udp_remote.py server [<interface>] [<port>]'
     print >> sys.stderr, '   or: udp_remote.py client <host> [<port>]'

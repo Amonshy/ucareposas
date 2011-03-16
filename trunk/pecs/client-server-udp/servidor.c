@@ -5,7 +5,7 @@
 #include  <stdio.h>
 #include  <stdlib.h>
 
-#define DATA "Ella se arrebata, bata bata bata"
+#define DATA "Soy el servidor, hola, que tal? :D"
 
 /*
   * In the included file <netinet/in.h> a sockaddr_in is defined as follows:
@@ -29,8 +29,8 @@ int main()
 	//Para enviar el mensaje
 	int tam_msg; //Tamaño del mensaje
 	struct hostent *hp, *gethostbyname();
-	char *ip_envio;
-	u_short puerto_envio;
+	char *ip_cliente;
+	u_short puerto_cliente;
 	int tam_struct_addr = sizeof(struct sockaddr_in);
 
 
@@ -63,29 +63,29 @@ int main()
        if ((tam_msg =recvfrom(sock, buf, 1024, 0, &cliente, &tam_struct_addr)) == -1)
              perror("Reciviendo el datagrama");
 
-	/* Obtención de los datos ¿Cómo? Solo falta eso para que se haga en función de lo recivido*/
-	ip_envio = inet_ntoa(cliente.sin_addr);
-	puerto_envio = ntohs(cliente.sin_port);
+	/* Obtención de los datos*/
+	ip_cliente = inet_ntoa(cliente.sin_addr);
+	puerto_cliente = ntohs(cliente.sin_port);
 
 	printf("-->El mensaje del cliente es: %s\n", buf);
-	printf("-->La ip del cliente es: %s\n", ip_envio);
-	printf("-->El puerto del cliente es: %u\n", puerto_envio);
+	printf("-->La ip del cliente es: %s\n", ip_cliente);
+	printf("-->El puerto del cliente es: %u\n", puerto_cliente);
 	printf("-->El tamaño del mensaje del cliente es: %d\n", tam_msg);
 
 	/* Respondemos al cliente */
-	printf("-->Estoy contestando\n");
-	hp = gethostbyname(ip_envio);  
+	printf("-->Estoy contestando...\n");
+	hp = gethostbyname(ip_cliente);  
 	if (hp == 0) {
-		fprintf(stderr, "%s: Host desconocido",ip_envio);
+		fprintf(stderr, "%s: Host desconocido",ip_cliente);
 		exit(2);
 	}
 	bcopy(hp->h_addr, &name.sin_addr, hp->h_length);
 	name.sin_family = AF_INET;
-	name.sin_port = htons(puerto_envio);
-	/* Send message. */
+	name.sin_port = htons(puerto_cliente);
+	/* Enviar Mensaje. */
 	if (sendto(sock, DATA, sizeof(DATA), 0, &name, sizeof(name)) < 0)
 		perror("Enviando respuesta");
-	printf("-->Ya he contestado\n");
+	printf("-->... ya he contestado\n");
        close(sock);
 }
 
