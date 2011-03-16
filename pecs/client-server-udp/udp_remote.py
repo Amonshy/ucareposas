@@ -28,10 +28,10 @@ elif len(sys.argv) >= 3 and sys.argv[1] == 'client':
     hostname = sys.argv[2]
     PORT = int(sys.argv[3]) if len(sys.argv) > 3 else 1060
     s.connect((hostname, PORT))
-    print 'Cliet socket name is', s.getsockname()
+    print 'El socket del cliente es: ', s.getsockname()
     delay = 0.1
     while True:
-        s.send('This is another message')
+        s.send('Soy el cliente')
         print 'Waiting up to', delay, 'seconds for a reply'
         s.settimeout(delay)
         try:
@@ -39,12 +39,12 @@ elif len(sys.argv) >= 3 and sys.argv[1] == 'client':
         except socket.timeout:
             delay *= 2    # wait even longer for the next request
             if delay > 2.0:
-                raise RuntimeError('I think the server is down')
+                raise RuntimeError('El servidor se ha caido.')
         except:
             raise   # a real error, so we let the user see it
         else:
             break   # we are done, and can stop looping
-    print 'The server says', repr(data)
+    print 'El servidor me ha dicho: ', repr(data)
 else:
     print >> sys.stderr, 'usage: udp_remote.py server [<interface>] [<port>]'
     print >> sys.stderr, '   or: udp_remote.py client <host> [<port>]'
