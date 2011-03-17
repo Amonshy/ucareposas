@@ -1,0 +1,9 @@
+Pasos para ejecutar el cliente/servidor
+=======================================
+
+1) Compilar el servidor
+	gcc -o servidor servidor.c
+2) Ejecutar el servidor. Se nos muestra el puerto por el que estará escuchando.
+	./servidor
+3) Ejecutar el cliente. Hay que indicarle la ip del servidor y el puerto donde escucha
+	./cliente.py client IPSERVIDOR PUERTOSERVIDOR
