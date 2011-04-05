@@ -1,21 +1,23 @@
+% :-op(900,xfy, :).
+
+:- dynamic conocido/3.
+
 objetivo(X) :- predicadoDeObjetivo(X).
 	
 resolver :- abolish(conocido, 3),
-	asserta(conocido(_, sin_valor, sin_valor)),
+% 	asserta(conocido(_, sin_valor, sin_valor)),
 	historizar(objetivo(X), []),
 	write('Respuesta: '), write(X), nl.
-	resolver :- write('No se encontro respuesta'), nl.
 
 resolver :- write('No se encontro respuesta'), nl.
-
-:- dynamic conocido/3.
 
 conocido(_, sin_valor, sin_valor).
 
 comenzar :-
 	bienvenida,
 	repeat,
-	write('> '), read(X),
+	write('> '),
+	read(X),
 	ejecutar(X),
 	X == e.
 
@@ -53,17 +55,26 @@ pruebaPrototipo(Objetivo, RestoObjetivos) :-
 historizar(true, _) :- !.
 
 historizar((Objtv, Resto), Hist) :-
-	prueba(Objtv, [Objtv|Hist]), historizar(Resto, Hist).
+	prueba(Objtv, [Objtv|Hist]),
+	historizar(Resto, Hist).
 	
-historizar(Objtv, Hist) :- prueba(Objtv, [Objtv|Hist]).
+historizar(Objtv, Hist) :-
+	prueba(Objtv, [Objtv|Hist]).
 
 prueba(true, _) :- !.
+
+% % % % % % % % % % % % % % % % % % % % 
+prueba(menuask(X,Y,Z),Hist) :-
+	menuask(X,Y,Z,Hist),
+	!.
+% % % % % % % % % % % % % % % % % % % % 
 
 prueba(preguntar(A, V), Hist) :-
 	preguntar(A, V, Hist), !.
 	
 prueba(Objtv, Hist) :-
-	clause(Objtv, Subjtvs), historizar(Subjtvs, Hist).
+	clause(Objtv, Subjtvs),
+	historizar(Subjtvs, Hist).
 
 preguntar(Atributo, Valor, _) :-
 	conocido(si, Atributo, Valor), !.
@@ -131,3 +142,26 @@ bienvenida :-
 	write('c (consulta), '), write('h (ayuda), '),
 	write('r (recuerda), '), write('como(Objtv), '),
 	write('PQN(Objtv)'), write('e (finaliza)'), nl.
+	
+	
+
+% "menuask" is like ask, only it gives the user a menu to to choose from rather than a yes on no answer. In this case there is no need to check for a negative since "menuask" ensures there will be some positive answer.
+
+menuask(Atributo,Valor,_,_) :-
+	conocido(si,Atributo,Valor), % succeed if we know
+	!.
+	
+menuask(Atributo,_,_,_) :-
+	conocido(si,Atributo,_),
+	% fail if its some other value
+	!, fail.
+
+menuask(Atributo,AskValue,Menu,Hist) :-
+	nl,
+	write('What is the value for '), write(Atributo), write('?'), nl,
+	display_menu(Menu),
+	write('Enter the number of choice> '),
+	get_user(Num,Hist),nl,
+	pick_menu(Num,AnswerValue,Menu),
+	asserta(conocido(si,Atributo,AnswerValue)),
+	AskValue = AnswerValue. % succeed or fail based on answer
