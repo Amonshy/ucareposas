@@ -1,6 +1,6 @@
-preguntar(Atributo, Valor) :-
-	write(Atributo:Valor),
-	write('? '), read(si).
+% preguntar(Atributo, Valor) :-
+% 	write(Atributo:Valor),
+% 	write('? '), read(si).
 
 predicadoDeObjetivo(X) :- ave(X).
 
