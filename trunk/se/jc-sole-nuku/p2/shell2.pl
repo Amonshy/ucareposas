@@ -2,6 +2,8 @@
 % knowledge bases. It includes explanations.
 :-op(900,xfy, :).
 
+% :- dynamic known/3.
+
 main :-
 	greeting,
 	repeat,
