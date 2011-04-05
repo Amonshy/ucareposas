@@ -1,7 +1,7 @@
 % BIRDS.NKB - a sample bird identification system for use with the
 % Native shell.
 % top_goal where Native starts the inference.
-predicadoDeObjetivo(X) :-
+top_goal(X) :-
 bird(X).
 order(tubenose) :-
 nostrils(external_tubular),
