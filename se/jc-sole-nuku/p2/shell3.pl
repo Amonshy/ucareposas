@@ -64,21 +64,20 @@ prueba(preguntar(A, V), Hist) :-
 prueba(Objtv, Hist) :-
         clause(Objtv, Subjtvs), historizar(Subjtvs, Hist).
 
+preguntar(Atributo, Valor, _) :-
+        conocido(si, Atributo, Valor), !.
+
+preguntar(Atributo, Valor, _) :-
+        conocido(_, Atributo, Valor), !, fail.
+        
 preguntar(Atributo, Valor, Hist) :-
         write(Atributo:Valor), write('? '),
         leer_respuesta(Resp, Hist),
         asserta(conocido(Resp, Atributo, Valor)),
         Resp == si.
         
-preguntar(Atributo, Valor, _) :-
-        conocido(si, Atributo, Valor), !.
-
-preguntar(Atributo, Valor, _) :-
-        conocido(_, Atributo, Valor), !, fail.
-
 leer_respuesta(X, Hist) :-
-        %repeat, read(X),
-        read(X),
+        repeat, read(X),
         procesar_respuesta(X, Hist), !.
 
 procesar_respuesta(por_que_no, Hist) :-
