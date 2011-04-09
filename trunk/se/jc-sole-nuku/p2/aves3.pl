@@ -18,7 +18,7 @@ comida(X) :-
 
 cola(X) :-
         preguntar(cola, X).
-        
+
 color(X) :-
         preguntar(color,X).
 
@@ -30,18 +30,16 @@ estacion(X) :-
 
 estado(X) :-
         preguntar(estado, X).
-        
-familia(X) :-
-        preguntar(familia, X).
-        
+
+
+
 garganta(X) :-
         preguntar(garganta,X).
 
 habita_en(X) :-
         preguntar('habita_en', X).
 
-orden(X) :-
-        preguntar(orden, X).
+
 
 pais(X) :-
         preguntar(pais, X).
@@ -51,7 +49,7 @@ patas(X) :-
 
 perfil_del_vuelo(X) :-
         preguntar(perfil_del_vuelo, X).
-        
+
 pico(X) :-
         preguntar(pico, X).
 
@@ -66,8 +64,10 @@ sonido(X) :-
 
 tamano(X) :-
         preguntar(tamano, X).
-
-vuelo(X) :- menu(vuelo, X, [pesado, potente]).
+        
+vuelo(X) :-
+        preguntar(vuelo, X).
+%vuelo(X) :- menu(vuelo, X, [agil,pesado, potente]).
 
 
 % Orden
@@ -75,6 +75,7 @@ orden(acuatica):- patas(palmeadas), pico(plano).
 orden(falconiforme):- comida(carne), patas(garras_curvas), pico('ganchudo y afilado').
 orden(paseriforme):- patas('una garra larga hacia atras').
 orden(tubinar):- agujero_en_pico('tubular externo'),habita_en(mar), pico(ganchudo).
+orden(X) :- preguntar(orden, X).
 
 % Familia
 
@@ -87,6 +88,7 @@ familia(halcon):- orden(falconiforme), alas('largas y afiladas'), cabeza(grande)
 familia(papamoscas):- orden(paseriforme), pico(plano), comida('insectos voladores').
 familia(pato):- orden(acuatica), comida('sobre la superficie del agua'), vuelo(agil).
 familia(petrel):- orden(tubinar), tamano(mediano).
+familia(X) :- preguntar(familia, X).
 
 % Ave
 
