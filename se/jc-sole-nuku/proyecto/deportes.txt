@@ -1,0 +1,236 @@
+% nombre;categorías;instalaciones;accesorios;jugadores;otros;.
+
+categorías:
+	acuático
+	nieve
+	equipo
+	raqueta
+	precisión
+	motor
+	atletismo
+	combate
+	
+instalaciones:
+	campo césped
+	campo tierra
+	pista hielo
+	pista césped
+	pista tierra
+	pista dura
+	cancha parqué
+	pista cemento
+	pista césped sintético
+	pista moqueta
+	pista atletismo
+	red
+	canasta
+	portería
+	trampolín
+	piscina
+	valla
+	circuito
+	tatami
+	ring
+	
+accesorios:
+	cuerda
+	pesas
+	bate
+	casco
+	raqueta
+	pala
+	balón
+	pelota
+	patín
+	monopatín
+	tabla
+	vela
+	cometa
+	caña pescar
+	paracaídas
+	parapente
+	ala delta
+	snowboard
+	esquí
+	palo golf
+	guantes
+	kimono
+	cinturón
+	gafas natación
+	gafas buzo
+	tubo buzo
+	bombona
+	aletas
+	piragüa
+	kayak
+	jabalina
+	disco
+	pértiga
+	martillo
+	bola
+	tablero
+	ficha
+	taco
+	bumerán
+    frisbee
+	dardo
+	diana
+	bicicleta
+	sable
+	espada
+	florete
+	stick
+	bolo
+	cepillo
+	pistola
+	rifle
+	aro
+	maza
+	cinta
+	step
+
+otros:
+	caballo
+	barco
+	coche
+	moto
+	avión
+	globo
+	
+Bodyboard;acuático;;tabla;1;;.
+Bodysurfing;acuático;;;1;;.
+Piragüismo;acuático;;piragüa,remo;1 o 2;;.
+Kayak-polo;acuático;portería;kayak,remo,pelota;5;;.
+Apnea;acuático;;gafas buzo;1;;.
+Trampolín;acuático;piscina,trampolín;1 o 2;;.
+Carrera de lanchas motoras;acuático;;;1;barco;.
+Esquí acuático;acuático;;esquí;1;barco;.
+Kayak;acuático;;kayak,remo;1 2 o 3;;.
+Kitesurf;acuático;;tabla,cometa;1;;.
+Rafting;acuático;;remo,casco;;;.
+Remo;acuático;;remo;1 2 3 4 5 7 8 o 9;;.
+Vela;acuático;;;;barco;.
+Vela ligera;acuático;;;;barco;.
+Buceo;acuático;;bombona,gafas buzo,aletas;1;;.
+Esnórquel;acuático;;gafas buzo,aletas,tubo buzo;1;;.
+Surf;acuático;;tabla;1;;.
+Natación;acuático;piscina;gafas natación;1 o 4;;.
+Natación sincronizada;acuático,equipo;piscina;gafas natación;1 2 4 u 8;;.
+Wakeboard;acuático;;tabla;1;;.
+Waterpolo;acuático,equipo;piscina,portería;pelota;7;;.
+Windsurf;acuático;;tabla,vela;1;;.
+Acrobacia aérea;aéreo;;;1;avión;.
+Aerostato;aéreo;;;;globo;.
+Salto base;aéreo;;parapente,casco;1;;.
+Ala delta;aéreo;;casco;1;;.
+Paracaidismo;aéreo;;paracaídas,casco;1;avión;.
+Parapente;aéreo;;parapente,casco;1;;.
+Wingsuit;aéreo;;casco, paracaídas;1;avión;.
+Puénting;aéreo;;cuerda;1;;.
+Sky surfing;aéreo;;tabla,paracaídas,casco;1;avión;.
+Pesca deportiva;acuático;;caña pescar;1;;.
+Equitación;;casco;1;caballo;.
+Polo;equipo;portería,campo césped;casco,pelota;4;caballo;.
+Hípica;;casco;1;caballo;.
+Carreras velocidad;atletismo;pista atletismo;;1 o 4;;.
+Carreras medio fondo;atletismo;pista atletismo;;1;;.
+Carreras larga distancia;atletismo;pista atletismo;;1;;.
+Carreras vallas;atletismo;valla,pista atletismo;;1;;.
+Triple salto;atletismo;pista atletismo;;1;;.
+Salto de longitud;atletismo;pista atletismo;;1;;.
+Salto de altura;atletismo;pista atletismo;;1;;.
+Salto con pértiga;atletismo;pista atletismo;pértiga;1;;.
+Disco;atletismo;pista atletismo;disco;1;;.
+Lanzamiento de martillo;atletismo;pista atletismo;martillo;1;;.
+Jabalina;atletismo;pista atletismo;jabalina;1;;.
+Lanzamiento de peso;atletismo;pista atletismo;bola;1;;.
+Marcha;atletismo;pista atletismo;;1;;.
+Fórmula 1;motor;circuito;casco;1;coche;.
+Rally;motor;circuito;casco;1;coche;.
+Motociclismo;motor;circuito;casco;1;moto;.
+Karting;motor;circuito;casco;1;coche;.
+BMX;;;casco,bicicleta;1;;.
+Ciclismo de montaña;;;casco,bicicleta;1;;.
+Ciclismo;;;casco,bicicleta;1;;.
+Ciclismo en pista;;;casco,bicicleta;1;;.
+Aikido;combate;tatami;kimono,cinturón;1;;.
+Boxeo;combate;ring;guantes;1;;.
+Capoeira;combate;tatami;;1;;.
+Kung Fu;combate;tatami;;1;;.
+Esgrima;combate;tatami;sable,espada,florete;1;;.
+Hapkido;combate;tatami;;1;;.
+Jeet Kune Do;combate;tatami;;1;;.
+Judo;combate;tatami;kimono,cinturón;1;;.
+Jiu-jitsu;combate;tatami;;1;;.
+Kali Sikaran;combate;tatami;;1;;.
+Karate;combate;tatami;kimono,cinturón;1;;.
+Kickboxing;combate;ring;guantes;1;;.
+Lucha libre;combate;tatami;;1;;.
+Ninjitsu;combate;tatami;;1;;.
+Sambo;combate;tatami;kimono,cinturón;1;;.
+Sumo;combate;tatami;;1;;.
+Taekwondo;combate;tatami;kimono,cinturón;1;;.
+Tai Chi Chuan;combate;tatami;;1;;.
+Wing Chun;combate;tatami;;1;;.
+Wrestling;combate;ring;;1;;.
+Fútbol americano;equipo;campo césped;balón,casco;11;;.
+Fútbol;equipo;campo césped,portería;balón;11;;.
+Fútbol australiano;equipo;campo césped;balón;18;;.
+Hockey hierba;equipo;campo césped,portería;pelota,stick;11;;.
+Hockey sobre patines;equipo;cancha parqué,portería;patín,stick,pelota;5;;.
+Hockey hielo;equipo;pista hielo,portería;disco,stick,casco;6;;.
+Béisbol;equipo;campo tierra;bate,pelota,guante,casco;9;;.
+Baloncesto;equipo;cancha parqué,canasta;balón;5;;.
+Fútbol playa;equipo;portería;balón;5;;.
+Rugby;equipo;;balón;15;;.
+Voleibol playa;equipo;red;balón;2;;.
+Bowling;equipo;;bolo,bola;1;;.
+Cricket;equipo;campo césped,portería;bate,pelota;11;;.
+Curling;equipo;pista hielo;cepillo;4;;.
+Futvóley;equipo;cancha parqué,red;balón;2;;.
+Fútbol sala;equipo;cancha parqué,portería;balón;5;;.
+Lacrosse;equipo;campo césped,portería;10;;.
+Paintball;equipo;;pistola,casco;;;.
+Voleibol;equipo;cancha parqué,red;balón;6;;.
+Pulseada;;;;1;;.
+Culturismo;;;pesas;1;;.
+Levantamiento de potencia;;;pesas;1;;.
+Halterofilia;;;pesas;1;;.
+Gimnasia artística;;;1 o 6;;.
+Gimnasia rítmica;;cuerda,aro,pelota,maza,cinta;1 2 3 4 o 5;;.
+Aeróbic;;;;1;;.
+Step;;;step;1;;.
+Ajedrez;;;ficha,tablero;1;;.
+Billar;precisión;;taco,bola;1;;.
+Snooker;precisión;;taco,bola;1;;.
+Bumerán;precisión;;;bumerán;1;;.
+Barranquismo;;;casco,cuerda;1;;.
+Frisbee;precisión;;frisbee;1;;.
+Golf;precisión;campo césped;palo golf,bola;1;;.
+Escalada;;;cuerda,casco;1;;.
+Futbolín;precisión;;bola;1 o 2;;.
+Petanca;precisión;;bola;1 2 o 3;;.
+Ironman;atletismo;;bicicleta,gafas natación;1;;.
+Pentatlón;atletismo;;;1;;.
+Triatlón;atletismo;;bicicleta,gafas natación;1;;.
+Esquí;nieve;;esquí;1;;.
+Biathlon;nieve;;esquí,rifle;1;;.
+Snowboarding;nieve;;casco,snowboard;1;;.
+Patinaje artístico hielo;;pista hielo;patín;1 o 2;;.
+Patinaje artístico ruedas;;pista hielo;patín;1 o 2;;.
+Skateboarding;;;monopatín;1;;.
+Bádminton;raqueta;cancha parqué,red;raqueta,volante;1 o 2;;.
+Frontenis;raqueta;cancha parqué,red;raqueta,pelota;1;;.
+Pelota vasca;raqueta;cancha parqué;pelota;1 o 2;;.
+Padel;raqueta;pista cemento,pista césped sintético,pista moqueta,red;pala,pelota;2;;.
+Raquetbol;raqueta;cancha parqué;raqueta,pelota;1;;.
+Squash;raqueta;cancha parqué;raqueta,pelota;1;;.
+Ping pong;raqueta;red;pala,pelota;1 o 2;;.
+Tenis;raqueta;pista césped,pista tierra,pista dura,red;raqueta,pelota;1 o 2;;.
+Correr;;;;1;;.
+Decatlón;atletismo;pista atletismo;;1;;.
+Dardos;precisión;;diana;dardo;1;;.
+Bobsleigh;;;trineo;casco;2 o 4;;.
+Luge;;;trineo;casco;1 o 2;;.
+Skeleton;;;trineo;casco;1;;.
+Parkour;;;;1;;.
