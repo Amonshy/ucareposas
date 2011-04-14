@@ -1,9 +1,16 @@
-principal(ArchivoEntrada,ArchivoSalida):- see(ArchivoEntrada),tell(ArchivoSalida),get(X),leer_datos(X),write('.'),seen,told.
+principal(ArchivoEntrada,ArchivoSalida):- see(ArchivoEntrada),tell(ArchivoSalida),procesar_fichero,seen,told.
+
+procesar_fichero:-get(X),X\== -1,leer_datos(X),get(Punto),put(Punto),nl,procesar_fichero,!.
+procesar_fichero:-!.
 
 leer_datos(C):- leer_nombre(C).
 
+%En estos predicados se comprueba qué atributos se encuentran vacíos.
 leer_nombre(59):- write('):-'),get(C),C\==59,leer_categoria(C),!.
-leer_nombre(59):- get(C),leer_instalacion(C),!.
+leer_nombre(59):- get(C),C\==59,leer_instalacion(C),!.
+leer_nombre(59):- get(C),C\==59,leer_accesorio(C),!.
+leer_nombre(59):- get(C),C\==59,leer_jugadores(C),!.
+leer_nombre(59):- get(C),C\==59,leer_otros(C),!.
 leer_nombre(C):- write('deporte('),put(C),get(X),leer_nombre_recur(X).
 
 leer_nombre_recur(59):- leer_nombre(X),!.                                        %;
@@ -53,5 +60,5 @@ leer_otros(59):- !.
 leer_otros(C):- write('otros('),put(C),get(X),leer_otros_recur(X).
 
 leer_otros_recur(44):-write('),'),get(X),leer_otros(X),!.  %,
-leer_otros_recur(59):-write(')'),leer_otros(59),!.                                        %;
+leer_otros_recur(59):-write(')'),leer_otros(59),!.                  %;
 leer_otros_recur(C):- put(C),get(X),leer_otros_recur(X).
