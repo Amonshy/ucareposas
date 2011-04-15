@@ -1,0 +1,96 @@
+categorías:
+	acuático
+	nieve
+	equipo
+	raqueta
+	precisión
+	motor
+	atletismo
+	combate
+	
+instalaciones:
+	campo césped
+	campo tierra
+	pista hielo
+	pista césped
+	pista tierra
+	pista dura
+	cancha parqué
+	pista cemento
+	pista césped sintético
+	pista moqueta
+	pista atletismo
+	red
+	canasta
+	portería
+	trampolín
+	piscina
+	valla
+	circuito
+	tatami
+	ring
+	
+accesorios:
+	cuerda
+	pesas
+	bate
+	casco
+	raqueta
+	pala
+	balón
+	pelota
+	patín
+	monopatín
+	tabla
+	vela
+	cometa
+	caña pescar
+	paracaídas
+	parapente
+	ala delta
+	snowboard
+	esquí
+	palo golf
+	guantes
+	kimono
+	cinturón
+	gafas natación
+	gafas buzo
+	tubo buzo
+	bombona
+	aletas
+	piragüa
+	kayak
+	jabalina
+	disco
+	pértiga
+	martillo
+	bola
+	tablero
+	ficha
+	taco
+	bumerán
+    frisbee
+	dardo
+	diana
+	bicicleta
+	sable
+	espada
+	florete
+	stick
+	bolo
+	cepillo
+	pistola
+	rifle
+	aro
+	maza
+	cinta
+	step
+
+otros:
+	caballo
+	barco
+	coche
+	moto
+	avión
+	globo

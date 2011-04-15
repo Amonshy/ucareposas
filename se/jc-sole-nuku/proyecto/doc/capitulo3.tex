@@ -1,1 +1,21 @@
 \chapter{Diseño de interfaces}
+El diseño de las interfaces es muy similar al del sistema experto de aves, los cambios que hemos hecho han sido en las preguntas:
+
+\begin{verbatim}
+nombre_deporte(X) :- preguntar(nombre_deporte, X).
+
+categoria(X) :-
+        preguntar(categoria, X).
+
+instalacion(X) :-
+        preguntar(instalacion, X).
+
+accesorio(X) :-
+        preguntar(accesorio, X).
+
+jugadores(X) :-
+        preguntar(jugadores, X).
+
+otros(X) :-
+        preguntar(otros, X).
+\end{verbatim}
