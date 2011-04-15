@@ -1,6 +1,6 @@
 principal(ArchivoEntrada,ArchivoSalida):- see(ArchivoEntrada),tell(ArchivoSalida),procesar_fichero,seen,told.
 
-procesar_fichero:-get0(X),X\== -1,leer_datos(X),get0(Punto),put(Punto),get0(SaltoLinea),put(SaltoLinea),procesar_fichero,!.
+procesar_fichero:-get0(X),X\== -1,leer_datos(X),get0(Punto),put(Punto),get0(_),get0(SaltoLinea),put(SaltoLinea),procesar_fichero,!.
 procesar_fichero:-!.
 
 leer_datos(C):- leer_nombre(C).
