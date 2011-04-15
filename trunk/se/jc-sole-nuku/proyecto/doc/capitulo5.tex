@@ -1,1 +1,58 @@
 \chapter{Carga inicial}
+
+\section{Formato del archivo de datos iniciales.}
+\label{sec:formato}
+
+La información para crear la base de conocimiento se va a adquirir de un fichero de texto. Este fichero se tendrá que redactar siguiendo las siguientes pautas.
+\begin{itemize}
+ \item Los datos tienen que seguir éste orden: deporte(nombre), categoría, instalaciones, accesorios, jugadores, otros y nombre del deporte.
+ \item La información se tienen que escribir entre comillas simples y separada por ;. Para diferenciar los datos que pertenecen a un deporte y los datos que pertenecen a otro se va a escribir el carácter punto entre deporte y deporte. La estructura que debe seguir es la siguiente:
+
+\begin{verbatim}
+  'deporte';'categoría';'instalaciones';'accesorios';'jugadores';
+  'otros';'nombre_deporte';.
+\end{verbatim}
+
+ \item En el caso de que se necesite tener más de un dato para un mismo atributo se indicará separando dichos datos por comas, tal y como se muestra a continuación:
+\begin{verbatim}
+  'deporte';'categoría';'instalaciones','instalaciones','instalaciones';
+  'accesorios';'jugadores';'otros';'nombre_deporte';.
+\end{verbatim}
+ 
+\item Si por el contrario se quiere prescindir de un atributo, se indicará dejando vacío el espacio reservado para dicho atributo.
+\begin{verbatim}
+ 'deporte';'categoría';;'accesorios';'jugadores';'otros';'nombre_deporte';.
+\end{verbatim}
+
+ \item El archivo debe terminar con un salto de línea.
+\end{itemize}
+
+\section{Lectura de los datos y creación del archivo que contiene la información con la sintaxis correcta.}
+El archivo entrada\_datos.pl contiene los predicados necesarios para poder leer el fichero de datos y crear un nuevo archivo con la información en el formato correcto.\\ 
+
+Para ello, contamos con un predicado inicial(principal) que es el que se va a encargar de abrir el fichero de texto y de crear el nuevo archivo, así como de llamar al predicado procesar\_fichero y de cerrar ambos archivos.\\
+
+El predicado procesar\_fichero es el que se encarga de leer cada línea del archivo así como de escribirlas en el nuevo fichero, para ello llamará a una serie de predicados encadenados(leer\_nombre,leer\_categoría\ldots) que leerán cada dato asociado a cada atributo y lo escribirán en el nuevo fichero con la sintaxis correcta. Estos atributos que se han mencionado antes(leer\_nombre, leer\_categoría\ldots), tendrán que realizar una serie de comprobaciones con respecto a si hay más de un dato por atributo o si por el contrario no existen datos para un atributo.\\
+
+A continuación se muestra un ejemplo de cómo son los datos de entrada y cómo se escribirán en el nuevo fichero:\\
+
+Si la información que se recibe es ésta:
+\begin{verbatim}
+'Bodyboard';'acuático';;'tabla';'1';;'Bodyboard';.
+\end{verbatim}
+
+se almacenará en el fichero nuevo (que en nuestro caso será deportes\_db.pl) como:
+\begin{verbatim}
+deporte('Bodyboard'):- categoría('acuático'),accesorio('tabla'),
+		jugadores('1'),nombre_deporte('Bodyboard').
+\end{verbatim}
+
+\section{Creación de la base de conocimiento.}
+La base de conocimiento (deportes.pl) incluye:
+\begin{itemize}
+ \item El predicado objetivo.
+ \item Los datos que se han obtenido al ejecutar entrada\_datos.pl.
+ \item Los predicados que preguntan por cada atributo de manera concreta.
+\end{itemize}
+
+Para que se realice todo de manera automática se van a seguir los pasos que se describen a continuación. Primero se carga el archivo entrada\_datos.pl, a continuación ya se puede llamar al predicado principal (predicado de inicio que se encarga de leer el fichero y crear el nuevo archivo) con base.txt (archivo de texto que contiene la información de entrada con el formato indicado en el apartado \ref{sec:formato}) y deportes\_db.pl (archivo donde se va a almacenar la información de entrada con el formato correcto). Una vez que tenemos el archivo deportes\_db.pl ya podemos añadirlo a la base de conocimiento, y por lo tanto, ya podemos realizar las consultas.
