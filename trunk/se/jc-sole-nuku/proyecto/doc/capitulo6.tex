@@ -1,0 +1,4 @@
+\chapter{Problemas}
+Uno de los problemas encontrados, que no hemos podido solucionar, es que el sistema experto se ejecute tanto en GNU/Linux como Windows. Esto es debido a la codificación de la base de datos de deportes, que debe ser UTF8 en Linux e ISO-8859 en Windows. Además, existe otro problema derivado de la codificación, los saltos de linea:
+
+En ISO-8859 los saltos de linea se componen de un solo carácter, el propio salto de linea. En cambio en UTF8 los saltos de linea se componen de dos caracteres, retorno de carro y salto de linea. Por lo tanto, en Linux, en el subsistema de adquisición de información, es necesario consumir el carácter de retorno de carro con \texttt{get0(\_)}. Pero en Windows esto no es necesario, luego existen pequeñas diferencias entre las dos versiones.
