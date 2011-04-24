@@ -1,5 +1,14 @@
 \chapter{Diseño de interfaces}
-El diseño de las interfaces es muy similar al del sistema experto de aves, los cambios que hemos hecho han sido en las preguntas:
+
+El formato básico que seguirá el diseño de las interfaces será el siguiente:
+
+\begin{verbatim}
+hecho(Respuesta) :- 
+	preguntar(Mensaje, Respuesta)
+\end{verbatim}
+
+
+Como vemos, este diseño es muy similar al del sistema experto de aves, residiendo los cambios sólo en las preguntas que se efectúan, que son las que siguen:
 
 \begin{verbatim}
 nombre_deporte(X) :- preguntar(nombre_deporte, X).
