@@ -1,0 +1,48 @@
+\section{Carga inicial}
+
+
+\begin{frame}{Carga inicial}
+ \begin{block}{Formato del archivo de datos iniciales}
+ \begin{itemize}
+  \item Los datos se tienen que redactar siguiendo un determinado orden.
+  \item La información se tiene que escribir entre comillas simples y separada por ;.
+  \item Se escribe un punto entre deporte y deporte para así poder diferenciarlos.
+  \item Si se necesita tener más de un dato para un mismo atributo se escriben separados por comas.
+  \item Si se quiere prescindir de un atributo se deja vacío el espacio reservado para dicho atributo.
+  \item El archivo debe terminar con un salto de línea.
+ \end{itemize}
+ \end{block}
+\end{frame}
+
+\begin{frame}{Carga inicial}
+ \begin{block}{Lectura de los datos y creación del archivo que contiene la información con la sintaxis correcta (archivo entrada\_datos.pl)}
+ \begin{description}
+  \item [Predicado principal:]se encarga de abrir el fichero, crear el nuevo archivo, llamar al predicado procesar\_fichero y cerrar ambos ficheros.
+  \item [Predicado procesar\_fichero:]se encarga de leer cada línea del archivo y escribirla correctamente en el nuevo fichero.
+  \item [Predicados auxiliares(leer\_nombre,leer\_categoria\ldots):]son una serie de predicados que utiliza procesar\_fichero para leer y escribir atributo a atributo.
+ \end{description}
+ \end{block}
+\end{frame}
+
+\begin{frame}{Carga inicial}
+ \begin{block}{Ejemplo de entrada}
+'Bodyboard';'acuático';;'tabla';'1';;'Bodyboard';.
+ \end{block}
+
+ \begin{block}{Ejemplo de salida}
+deporte('Bodyboard'):- categoría('acuático'),accesorio('tabla'),
+		jugadores('1'),nombre\_deporte('Bodyboard').
+ \end{block}
+\end{frame}
+
+
+\begin{frame}{Carga inicial}
+ \begin{block}{Creación de la base de conocimiento}
+La base de conocimiento (deportes.pl) incluye:
+\begin{itemize}
+ \item El predicado objetivo.
+ \item Los datos que se han obtenido al ejecutar entrada\_datos.pl.
+ \item Los predicados que preguntan por cada atributo de manera concreta.
+\end{itemize}
+ \end{block}
+\end{frame}
