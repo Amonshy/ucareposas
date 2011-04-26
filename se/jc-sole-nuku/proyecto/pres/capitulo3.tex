@@ -1,0 +1,29 @@
+\section{Diseño de interfaces}
+\begin{frame}
+ \tableofcontents[currentsection,hideothersubsections]    
+\end{frame}
+
+\begin{frame}{Diseño de interfaces}
+ \begin{block}{Formato básico}
+hecho(Respuesta) :- 
+	preguntar(Mensaje, Respuesta)
+ \end{block}
+ 
+  \begin{block}{Ejemplo}
+accesorio(X) :- 
+	preguntar('accesorio', X)
+ \end{block}
+\end{frame}
+
+\begin{frame}{Diseño de interfaces II}
+ \begin{block}{Preguntas}
+ \begin{itemize}
+  \item nombre\_deporte(X) :- preguntar(nombre\_deporte, X).
+  \item categoria(X) :- preguntar(categoria, X).
+  \item instalacion(X) :- preguntar(instalacion, X).
+  \item accesorio(X) :- preguntar(accesorio, X).
+  \item jugadores(X) :- preguntar(jugadores, X).
+  \item otros(X) :- preguntar(otros, X).
+ \end{itemize}
+ \end{block}
+\end{frame}
