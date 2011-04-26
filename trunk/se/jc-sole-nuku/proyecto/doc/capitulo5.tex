@@ -6,22 +6,24 @@
 La información para crear la base de conocimiento se va a adquirir de un fichero de texto. Este fichero se tendrá que redactar siguiendo las siguientes pautas.
 \begin{itemize}
  \item Los datos tienen que seguir éste orden: deporte(nombre), categoría, instalaciones, accesorios, jugadores, otros y nombre del deporte.
- \item La información se tienen que escribir entre comillas simples y separada por ;. Para diferenciar los datos que pertenecen a un deporte y los datos que pertenecen a otro se va a escribir el carácter punto entre deporte y deporte. La estructura que debe seguir es la siguiente:
+ \item La información se tiene que escribir entre comillas simples y separada por ;. Para diferenciar los datos que pertenecen a un deporte y los datos que pertenecen a otro se va a escribir el carácter punto entre deporte y deporte. La estructura que debe seguir es la siguiente:
 
 \begin{verbatim}
-  'deporte';'categoría';'instalaciones';'accesorios';'jugadores';
-  'otros';'nombre_deporte';.
+  'deporte';'categoría';'instalaciones';'accesorios';
+  'jugadores';'otros';'nombre_deporte';.
 \end{verbatim}
 
  \item En el caso de que se necesite tener más de un dato para un mismo atributo se indicará separando dichos datos por comas, tal y como se muestra a continuación:
 \begin{verbatim}
-  'deporte';'categoría';'instalaciones','instalaciones','instalaciones';
-  'accesorios';'jugadores';'otros';'nombre_deporte';.
+  'deporte';'categoría';'instalaciones','instalaciones',
+  'instalaciones';'accesorios';'jugadores';'otros';
+  'nombre_deporte';.
 \end{verbatim}
  
 \item Si por el contrario se quiere prescindir de un atributo, se indicará dejando vacío el espacio reservado para dicho atributo.
 \begin{verbatim}
- 'deporte';'categoría';;'accesorios';'jugadores';'otros';'nombre_deporte';.
+ 'deporte';'categoría';;'accesorios';'jugadores';'otros';
+ 'nombre_deporte';.
 \end{verbatim}
 
  \item El archivo debe terminar con un salto de línea.
