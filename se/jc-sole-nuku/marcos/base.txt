@@ -1,0 +1,138 @@
+'Bodyboard';'acuático';;'tabla';'1';;'Bodyboard';.
+'Bodysurfing';'acuático';;;'1';;'Bodysurfing';.
+'Piragüismo';'acuático';;'piragüa','remo';'1 o 2';;'Piragüismo';.
+'Kayak-polo';'acuático';'portería';'kayak','remo','pelota';'5';;'Kayak-polo';.
+'Apnea';'acuático';;'gafas buzo';'1';;'Apnea';.
+'Trampolín';'acuático';'piscina','trampolín';;'1 o 2';;'Trampolín';.
+'Carrera de lanchas motoras';'acuático';;;'1';'barco';'Carrera de lanchas motoras';.
+'Esquí acuático';'acuático';;'esquí';'1';'barco';'Esquí acuático';.
+'Kayak';'acuático';;'kayak','remo';'1 2 o 3';;'Kayak';.
+'Kitesurf';'acuático';;'tabla','cometa';'1';;'Kitesurf';.
+'Rafting';'acuático';;'remo','casco';;;'Rafting';.
+'Remo';'acuático';;'remo';'1 2 3 4 5 7 8 o 9';;'Remo';.
+'Vela';'acuático';;;;'barco';'Vela';.
+'Vela ligera';'acuático';;;;'barco';'Vela ligera';.
+'Buceo';'acuático';;'bombona','gafas buzo','aletas';'1';;'Buceo';.
+'Esnórquel';'acuático';;'gafas buzo','aletas','tubo buzo';'1';;'Esnórquel';.
+'Surf';'acuático';;'tabla';'1';;'Surf';.
+'Natación';'acuático';'piscina';'gafas natación';'1 o 4';;'Natación';.
+'Natación sincronizada';'acuático','equipo';'piscina';'gafas natación';'1 2 4 u 8';;'Natación sincronizada';.
+'Wakeboard';'acuático';;'tabla';'1';;'Wakeboard';.
+'Waterpolo';'acuático','equipo';'piscina','portería';'pelota';'7';;'Waterpolo';.
+'Windsurf';'acuático';;'tabla','vela';'1';;'Windsurf';.
+'Acrobacia aérea';'aéreo';;;'1';'avión';'Acrobacia aérea';.
+'Aerostato';'aéreo';;;;'globo';'Aerostato';.
+'Salto base';'aéreo';;'parapente','casco';'1';;'Salto base';.
+'Ala delta';'aéreo';;'casco';'1';;'Ala delta';.
+'Paracaidismo';'aéreo';;'paracaídas','casco';'1';'avión';'Paracaidismo';.
+'Parapente';'aéreo';;'parapente','casco';'1';;'Parapente';.
+'Wingsuit';'aéreo';;'casco',' paracaídas';'1';'avión';'Wingsuit';.
+'Puénting';'aéreo';;'cuerda';'1';;'Puénting';.
+'Sky surfing';'aéreo';;'tabla','paracaídas','casco';'1';'avión';'Sky surfing';.
+'Pesca deportiva';'acuático';;'caña pescar';'1';;'Pesca deportiva';.
+'Equitación';;;'casco';'1';'caballo';'Equitación';.
+'Polo';'equipo';'portería','campo césped';'casco','pelota';'4';'caballo';'Polo';.
+'Hípica';;;'casco';'1';'caballo';'Hípica';.
+'Carreras velocidad';'atletismo';'pista atletismo';;'1 o 4';;'Carreras velocidad';.
+'Carreras medio fondo';'atletismo';'pista atletismo';;'1';;'Carreras medio fondo';.
+'Carreras larga distancia';'atletismo';'pista atletismo';;'1';;'Carreras larga distancia';.
+'Carreras vallas';'atletismo';'valla','pista atletismo';;'1';;'Carreras vallas';.
+'Triple salto';'atletismo';'pista atletismo';;'1';;'Triple salto';.
+'Salto de longitud';'atletismo';'pista atletismo';;'1';;'Salto de longitud';.
+'Salto de altura';'atletismo';'pista atletismo';;'1';;'Salto de altura';.
+'Salto con pértiga';'atletismo';'pista atletismo';'pértiga';'1';;'Salto con pértiga';.
+'Disco';'atletismo';'pista atletismo';'disco';'1';;'Disco';.
+'Lanzamiento de martillo';'atletismo';'pista atletismo';'martillo';'1';;'Lanzamiento de martillo';.
+'Jabalina';'atletismo';'pista atletismo';'jabalina';'1';;'Jabalina';.
+'Lanzamiento de peso';'atletismo';'pista atletismo';'bola';'1';;'Lanzamiento de peso';.
+'Marcha';'atletismo';'pista atletismo';;'1';;'Marcha';.
+'Fórmula 1';'motor';'circuito';'casco';'1';'coche';'Fórmula 1';.
+'Rally';'motor';'circuito';'casco';'1';'coche';'Rally';.
+'Motociclismo';'motor';'circuito';'casco';'1';'moto';'Motociclismo';.
+'Karting';'motor';'circuito';'casco';'1';'coche';'Karting';.
+'BMX';;;'casco','bicicleta';'1';;'BMX';.
+'Ciclismo de montaña';;;'casco','bicicleta';'1';;'Ciclismo de montaña';.
+'Ciclismo';;;'casco','bicicleta';'1';;'Ciclismo';.
+'Ciclismo en pista';;;'casco','bicicleta';'1';;'Ciclismo en pista';.
+'Aikido';'combate';'tatami';'kimono','cinturón';'1';;'Aikido';.
+'Boxeo';'combate';'ring';'guantes';'1';;'Boxeo';.
+'Capoeira';'combate';'tatami';;'1';;'Capoeira';.
+'Kung Fu';'combate';'tatami';;'1';;'Kung Fu';.
+'Esgrima';'combate';'tatami';'sable','espada','florete';'1';;'Esgrima';.
+'Hapkido';'combate';'tatami';;'1';;'Hapkido';.
+'Jeet Kune Do';'combate';'tatami';;'1';;'Jeet Kune Do';.
+'Judo';'combate';'tatami';'kimono','cinturón';'1';;'Judo';.
+'Jiu-jitsu';'combate';'tatami';;'1';;'Jiu-jitsu';.
+'Kali Sikaran';'combate';'tatami';;'1';;'Kali Sikaran';.
+'Karate';'combate';'tatami';'kimono','cinturón';'1';;'Karate';.
+'Kickboxing';'combate';'ring';'guantes';'1';;'Kickboxing';.
+'Lucha libre';'combate';'tatami';;'1';;'Lucha libre';.
+'Ninjitsu';'combate';'tatami';;'1';;'Ninjitsu';.
+'Sambo';'combate';'tatami';'kimono','cinturón';'1';;'Sambo';.
+'Sumo';'combate';'tatami';;'1';;'Sumo';.
+'Taekwondo';'combate';'tatami';'kimono','cinturón';'1';;'Taekwondo';.
+'Tai Chi Chuan';'combate';'tatami';;'1';;'Tai Chi Chuan';.
+'Wing Chun';'combate';'tatami';;'1';;'Wing Chun';.
+'Wrestling';'combate';'ring';;'1';;'Wrestling';.
+'Fútbol americano';'equipo';'campo césped';'balón','casco';'11';;'Fútbol americano';.
+'Fútbol';'equipo';'campo césped','portería';'balón';'11';;'Fútbol';.
+'Fútbol australiano';'equipo';'campo césped';'balón';'18';;'Fútbol australiano';.
+'Hockey hierba';'equipo';'campo césped','portería';'pelota','stick';'11';;'Hockey hierba';.
+'Hockey sobre patines';'equipo';'cancha parqué','portería';'patín','stick','pelota';'5';;'Hockey sobre patines';.
+'Hockey hielo';'equipo';'pista hielo','portería';'disco','stick','casco';'6';;'Hockey hielo';.
+'Béisbol';'equipo';'campo tierra';'bate','pelota','guante','casco';'9';;'Béisbol';.
+'Baloncesto';'equipo';'cancha parqué','canasta';'balón';'5';;'Baloncesto';.
+'Fútbol playa';'equipo';'portería';'balón';'5';;'Fútbol playa';.
+'Rugby';'equipo';;'balón';'15';;'Rugby';.
+'Voleibol playa';'equipo';'red';'balón';'2';;'Voleibol playa';.
+'Bowling';'equipo';;'bolo','bola';'1';;'Bowling';.
+'Cricket';'equipo';'campo césped','portería';'bate','pelota';'11';;'Cricket';.
+'Curling';'equipo';'pista hielo';'cepillo';'4';;'Curling';.
+'Futvóley';'equipo';'cancha parqué','red';'balón';'2';;'Futvóley';.
+'Fútbol sala';'equipo';'cancha parqué','portería';'balón';'5';;'Fútbol sala';.
+'Lacrosse';'equipo';'campo césped','portería';;'10';;'Lacrosse';.
+'Paintball';'equipo';;'pistola','casco';;;'Paintball';.
+'Voleibol';'equipo';'cancha parqué','red';'balón';'6';;'Voleibol';.
+'Pulseada';;;;'1';;'Pulseada';.
+'Culturismo';;;'pesas';'1';;'Culturismo';.
+'Levantamiento de potencia';;;'pesas';'1';;'Levantamiento de potencia';.
+'Halterofilia';;;'pesas';'1';;'Halterofilia';.
+'Gimnasia artística';;;;'1 o 6';;'Gimnasia artística';.
+'Gimnasia rítmica';;;'cuerda','aro','pelota','maza','cinta';'1 2 3 4 o 5';;'Gimnasia rítmica';.
+'Aeróbic';;;;'1';;'Aeróbic';.
+'Step';;;'step';'1';;'Step';.
+'Ajedrez';;;'ficha','tablero';'1';;'Ajedrez';.
+'Billar';'precisión';;'taco','bola';'1';;'Billar';.
+'Snooker';'precisión';;'taco','bola';'1';;'Snooker';.
+'Bumerán';'precisión';;'bumerán';'1';;'Bumerán';.
+'Barranquismo';;;'casco','cuerda';'1';;'Barranquismo';.
+'Frisbee';'precisión';;'frisbee';'1';;'Frisbee';.
+'Golf';'precisión';'campo césped';'palo golf','bola';'1';;'Golf';.
+'Escalada';;;'cuerda','casco';'1';;'Escalada';.
+'Futbolín';'precisión';;'bola';'1 o 2';;'Futbolín';.
+'Petanca';'precisión';;'bola';'1 2 o 3';;'Petanca';.
+'Ironman';'atletismo';;'bicicleta','gafas natación';'1';;'Ironman';.
+'Pentatlón';'atletismo';;;'1';;'Pentatlón';.
+'Triatlón';'atletismo';;'bicicleta','gafas natación','casco';'1';;'Triatlón';.
+'Esquí';'nieve';;'esquí';'1';;'Esquí';.
+'Biathlon';'nieve';;'esquí','rifle';'1';;'Biathlon';.
+'Snowboarding';'nieve';;'casco','snowboard';'1';;'Snowboarding';.
+'Patinaje artístico hielo';;'pista hielo';'patín';'1 o 2';;'Patinaje artístico hielo';.
+'Patinaje artístico ruedas';;'pista hielo';'patín';'1 o 2';;'Patinaje artístico ruedas';.
+'Skateboarding';;;'monopatín';'1';;'Skateboarding';.
+'Bádminton';'raqueta';'cancha parqué','red';'raqueta','volante';'1 o 2';;'Bádminton';.
+'Frontenis';'raqueta';'cancha parqué','red';'raqueta','pelota';'1';;'Frontenis';.
+'Pelota vasca';'raqueta';'cancha parqué';'pelota';'1 o 2';;'Pelota vasca';.
+'Padel';'raqueta';'pista cemento','pista césped sintético','pista moqueta','red';'pala','pelota';'2';;'Padel';.
+'Raquetbol';'raqueta';'cancha parqué';'raqueta','pelota';'1';;'Raquetbol';.
+'Squash';'raqueta';'cancha parqué';'raqueta','pelota';'1';;'Squash';.
+'Ping pong';'raqueta';'red';'pala','pelota';'1 o 2';;'Ping pong';.
+'Tenis';'raqueta';'pista césped','pista tierra','pista dura','red';'raqueta','pelota';'1 o 2';;'Tenis';.
+'Correr';;;;'1';;'Correr';.
+'Decatlón';'atletismo';'pista atletismo';;'1';;'Decatlón';.
+'Dardos';'precisión';;'diana','dardo';'1';;'Dardos';.
+'Bobsleigh';;;'trineo','casco';'2 o 4';;'Bobsleigh';.
+'Luge';;;'trineo','casco';'1 o 2';;'Luge';.
+'Skeleton';;;'trineo','casco';'1';;'Skeleton';.
+'Parkour';;;;'1';;'Parkour';.
+'Balonmano';'equipo';'cancha parqué','portería';'balón';'7';;'Balonmano';.
